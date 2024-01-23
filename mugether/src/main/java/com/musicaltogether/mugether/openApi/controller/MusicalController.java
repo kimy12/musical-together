@@ -1,6 +1,6 @@
-package com.musicaltogether.mugether.api.controller;
+package com.musicaltogether.mugether.openApi.controller;
 
-import com.musicaltogether.mugether.api.service.MusicalApiSerive;
+import com.musicaltogether.mugether.openApi.service.MusicalApiSerive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
