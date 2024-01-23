@@ -1,6 +1,6 @@
 package com.musicaltogether.mugether.openApi.config;
 
-public class prfCode {
+public class PrfCode {
 
     /**
      *  OPEN API 공연리스트를 위한 코드
