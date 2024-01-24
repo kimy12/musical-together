@@ -2,13 +2,13 @@ package com.musicaltogether.mugether.openApi.service;
 
 import com.musicaltogether.mugether.openApi.config.OpenApiConst;
 import com.musicaltogether.mugether.openApi.dto.BoxofsDto;
+import com.musicaltogether.mugether.openApi.dto.BoxofsListDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.util.DefaultUriBuilderFactory;
+import org.springframework.web.client.RestTemplate;
 
-import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -17,10 +17,10 @@ import java.util.List;
 public class OpenApiManager {
 
     //조회 메서드
-//    public List<BoxofsDto> fetchByArea (String ststype, String date, String catecode){
-//        String areaUrl = makeAreaUrl(ststype, date, catecode);
-//        return fetch(areaUrl);
-//    }
+    public List<BoxofsDto> fetchByArea (String ststype, String date, String catecode){
+        String areaUrl = makeAreaUrl(ststype, date, catecode);
+        return fetch(areaUrl);
+    }
 
     // URL 조립 메서드
     /**
@@ -37,7 +37,6 @@ public class OpenApiManager {
      * @return 공연 장소 리스트 기본 URL
      */
     public String setBaseUrlForPlace (){
-
         return OpenApiConst.URL_PLACE + OpenApiConst.SERVICE_KEY ;
     }
 
@@ -53,13 +52,14 @@ public class OpenApiManager {
         return setBaseUrlForShow() + "&ststype=" + ststype + "&date=" + date + "&catecode=" + catecode;
     }
 
-    public void fetch (String url) {
-        DefaultUriBuilderFactory factory = new DefaultUriBuilderFactory(url);
-        factory.setEncodingMode(DefaultUriBuilderFactory.EncodingMode.VALUES_ONLY);
+    public List<BoxofsDto> fetch (String url) {
 
-        WebClient webClient = WebClient.builder()
-                .uriBuilderFactory(factory)
-                .baseUrl(url)
-                .build();
+        RestTemplate restTemplate = new RestTemplate();
+
+        BoxofsListDto result = restTemplate.getForObject(url, BoxofsListDto.class);
+
+        List<BoxofsDto> resultList = result.getBoxofsDtoInfo();
+
+        return resultList;
     }
 }
