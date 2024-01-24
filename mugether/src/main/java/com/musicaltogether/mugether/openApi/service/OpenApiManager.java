@@ -53,7 +53,7 @@ public class OpenApiManager {
         return setBaseUrlForShow() + "&ststype=" + ststype + "&date=" + date + "&catecode=" + catecode;
     }
 
-    public void fetch (String url) {
+    public void fetch (String url, List<?> param) {
         DefaultUriBuilderFactory factory = new DefaultUriBuilderFactory(url);
         factory.setEncodingMode(DefaultUriBuilderFactory.EncodingMode.VALUES_ONLY);
 
@@ -61,5 +61,22 @@ public class OpenApiManager {
                 .uriBuilderFactory(factory)
                 .baseUrl(url)
                 .build();
+
+        String response = webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .queryParam("prfplcnm", param)
+                        .queryParam("seatcnt", param.seatcnt)
+                        .queryParam("rnum", param.rnum)
+                        .queryParam("mt20id", param.mt20id)
+                        .queryParam("prfnm", param.prfnm)
+                        .queryParam("prfpd", param.prfpd)
+                        .queryParam("poster", param.poster)
+                        .queryParam("area", param.area)
+                        .queryParam("cate", param.cate)
+                        .queryParam("prfdtcnt", param.prfdtcnt)
+                        .build())
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
     }
 }
