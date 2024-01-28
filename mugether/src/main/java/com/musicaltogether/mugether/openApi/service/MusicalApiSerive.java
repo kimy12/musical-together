@@ -1,7 +1,6 @@
 package com.musicaltogether.mugether.openApi.service;
 
 import com.musicaltogether.mugether.openApi.dto.BoxofsDto;
-import com.musicaltogether.mugether.openApi.dto.BoxofsListDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,7 @@ public class MusicalApiSerive {
      * @param date 날짜
      * @return
      */
-    public String getBoxOfsList (String ststype, String date){
+    public List<BoxofsDto> getBoxOfsList (String ststype, String date){
 
         return openApiManager.fetchByArea(ststype, date, GENRE_MUSICAL);
     }

@@ -10,6 +10,8 @@ import org.json.XML;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Component
@@ -18,7 +20,7 @@ import org.springframework.web.client.RestTemplate;
 public class OpenApiManager {
 
     //조회 메서드
-    public String fetchByArea (String ststype, String date, String catecode){
+    public List<BoxofsDto> fetchByArea (String ststype, String date, String catecode){
         String areaUrl = makeAreaUrl(ststype, date, catecode);
         return fetch(areaUrl);
     }
@@ -53,8 +55,10 @@ public class OpenApiManager {
         return setBaseUrlForShow() + "&ststype=" + ststype + "&date=" + date + "&catecode=" + catecode;
     }
 
-    public String fetch (String url) {
+    public List<BoxofsDto> fetch (String url) {
 
+        // open api 에서 받은 데이터 (xml -> json 파싱 -> BoxofsDto)
+        List<BoxofsDto> result = new ArrayList<>();
 
         RestTemplate restTemplate = new RestTemplate();
         //String response = restTemplate.getForObject(url, String.class);
@@ -70,10 +74,27 @@ public class OpenApiManager {
         log.info(String.valueOf(jarr.length()));
         for (Object j : jarr) {
             JSONObject item = (JSONObject) j;
-            log.info(item.toString());
+            BoxofsDto dto = makeBoxofsDto(item);
+//            log.info("{}",makeBoxofsDto(item));
+            if (dto != null) result.add(dto);
         }
-
-        return response;
+        log.info("fetch 성공 = {}", result);
+        return result;
     }
 
+    public BoxofsDto makeBoxofsDto (JSONObject data){
+
+        return BoxofsDto.builder()
+                .area((String) data.get("area"))
+                .cate((String) data.get("cate"))
+                .prfnm((String) data.get("prfnm"))
+                .prfpd((String) data.get("prfpd"))
+                .mt20id((String) data.get("mt20id"))
+                .rnum((int) data.get("rnum"))
+                .poster((String) data.get("poster")) // poster 사진 경로
+                .prfdtcnt((int) data.get("prfdtcnt"))
+                .prfplcnm((String) data.get("prfplcnm"))
+                .seatcnt((int) data.get("seatcnt"))
+                .build();
+    }
 }

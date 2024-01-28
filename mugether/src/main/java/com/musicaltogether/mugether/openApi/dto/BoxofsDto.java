@@ -19,9 +19,9 @@ public class BoxofsDto {
 
         private String prfplcnm; // 공연장소
 
-        private String seatcnt; // 좌석수
+        private int seatcnt; // 좌석수
 
-        private String rnum; // 순위
+        private int rnum; // 순위
 
         private String mt20id; // 공연ID
 
@@ -35,5 +35,5 @@ public class BoxofsDto {
 
         private String cate; // 공연 장르명
 
-        private String prfdtcnt; // 공연 횟수
+        private int prfdtcnt; // 공연 횟수
 }
