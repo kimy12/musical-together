@@ -2,14 +2,15 @@ package com.musicaltogether.mugether.openApi.service;
 
 import com.musicaltogether.mugether.openApi.config.OpenApiConst;
 import com.musicaltogether.mugether.openApi.dto.BoxofsDto;
-import com.musicaltogether.mugether.openApi.dto.BoxofsListDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.XML;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Component
 @RequiredArgsConstructor
@@ -17,7 +18,7 @@ import java.util.List;
 public class OpenApiManager {
 
     //조회 메서드
-    public List<BoxofsDto> fetchByArea (String ststype, String date, String catecode){
+    public String fetchByArea (String ststype, String date, String catecode){
         String areaUrl = makeAreaUrl(ststype, date, catecode);
         return fetch(areaUrl);
     }
@@ -52,14 +53,27 @@ public class OpenApiManager {
         return setBaseUrlForShow() + "&ststype=" + ststype + "&date=" + date + "&catecode=" + catecode;
     }
 
-    public List<BoxofsDto> fetch (String url) {
+    public String fetch (String url) {
+
 
         RestTemplate restTemplate = new RestTemplate();
+        //String response = restTemplate.getForObject(url, String.class);
 
-        BoxofsListDto result = restTemplate.getForObject(url, BoxofsListDto.class);
+        String response = restTemplate.getForObject(url, String.class);
+        // XML을 JSON Object로 변환하기
+        JSONObject jobj = XML.toJSONObject(response);
+        // 3. 데이터에서 꺼내어쓰기
+        JSONObject jobj1 = jobj.getJSONObject("boxofs");
 
-        List<BoxofsDto> resultList = result.getBoxofsDtoInfo();
+        JSONArray jarr = jobj1.getJSONArray("boxof");
 
-        return resultList;
+        log.info(String.valueOf(jarr.length()));
+        for (Object j : jarr) {
+            JSONObject item = (JSONObject) j;
+            log.info(item.toString());
+        }
+
+        return response;
     }
+
 }

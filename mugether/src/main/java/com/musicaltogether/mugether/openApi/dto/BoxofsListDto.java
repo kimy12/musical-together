@@ -1,27 +1,17 @@
 package com.musicaltogether.mugether.openApi.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 
 @XmlRootElement(name = "boxofs")
 @XmlAccessorType(XmlAccessType.FIELD)
+@Data
 public class BoxofsListDto {
 
+    @XmlElement(name = "boxof")
     private List<BoxofsDto> boxofsDtoInfo;
-
-    @XmlElementWrapper(name="boxofs")
-    public List<BoxofsDto> getBoxofsDtoInfo() {
-        return boxofsDtoInfo;
-    }
-
-    public void setMemberInfo(List<BoxofsDto> boxofsDtoInfo) {
-        this.boxofsDtoInfo = boxofsDtoInfo;
-    }
-
 }
