@@ -91,7 +91,7 @@ public class OpenApiManager {
                 .prfpd((String) data.get("prfpd"))
                 .mt20id((String) data.get("mt20id"))
                 .rnum((int) data.get("rnum"))
-                .poster((String) data.get("poster")) // poster 사진 경로
+                .poster("http://kopis.or.kr/" + (String) data.get("poster")) // poster 사진 경로
                 .prfdtcnt((int) data.get("prfdtcnt"))
                 .prfplcnm((String) data.get("prfplcnm"))
                 .seatcnt((int) data.get("seatcnt"))
