@@ -33,10 +33,24 @@ public class BoxofsController {
     @GetMapping("/boxofs/{catgry}/{datetyp}/{date}")
     public String findAllBoxofs (@PathVariable("catgry") String catgry,
                                  @PathVariable("datetyp") String datetyp,
-                                 @PathVariable("date") String date, Model model){
+                                 @PathVariable("date") String date,
+                                 Model model){
 
         model.addAttribute("resultList", musicalApiSerive.getBoxOfsList(catgry, datetyp, date));
 
+        return "boxOfs/main";
+    }
+
+    /**
+     *
+     * @param showId 공연 아이디
+     * @param model
+     * @return
+     */
+    @GetMapping("/boxofs/detail/{showId}")
+    public String findShowDetail (@PathVariable("showId") String showId, Model model){
+
+        model.addAttribute("resultList", musicalApiSerive.getDetailById(showId));
         return "boxOfs/main";
     }
 }

@@ -2,6 +2,7 @@ package com.musicaltogether.mugether.openApi.service;
 
 import com.musicaltogether.mugether.openApi.config.OpenApiConst;
 import com.musicaltogether.mugether.openApi.dto.BoxofsDto;
+import com.musicaltogether.mugether.openApi.dto.DetailDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
@@ -21,8 +22,13 @@ public class OpenApiManager {
 
     //조회 메서드
     public List<BoxofsDto> fetchByBoxOfs (String ststype, String date, String catecode){
-        String areaUrl = makeBasicUrl(ststype, date, catecode);
-        return fetch(areaUrl);
+        String boxofsUrl = makeBasicUrl(ststype, date, catecode);
+        return fetch(boxofsUrl);
+    }
+
+    public DetailDto fetchByDetail (String showId){
+        String detailUrl = makeDetailUrl(showId);
+        return fetchD(detailUrl);
     }
 
     // URL 조립 메서드
@@ -55,6 +61,15 @@ public class OpenApiManager {
         return setBaseUrlForShow() + "&ststype=" + ststype + "&date=" + date + "&catecode=" + catecode;
     }
 
+    /**
+     *
+     * @param showId 공연 ID
+     * @return 공연 상세 URL
+     */
+    private String makeDetailUrl (String showId){
+        return OpenApiConst.URL_DETAIL + "/" + showId + OpenApiConst.SERVICE_KEY;
+    }
+
     public List<BoxofsDto> fetch (String url) {
         log.info("요청 url = {}" , url);
 
@@ -82,6 +97,32 @@ public class OpenApiManager {
         return result;
     }
 
+    public DetailDto fetchD (String url) {
+        log.info("요청 url = {}" , url);
+
+        // open api 에서 받은 데이터 (xml -> json 파싱 -> BoxofsDto)
+        List<BoxofsDto> result = new ArrayList<>();
+
+        RestTemplate restTemplate = new RestTemplate();
+        //String response = restTemplate.getForObject(url, String.class);
+
+        String response = restTemplate.getForObject(url, String.class);
+        // XML을 JSON Object로 변환하기
+        JSONObject jobj = XML.toJSONObject(response);
+        // 3. 데이터에서 꺼내어쓰기
+        JSONObject jobj1 = jobj.getJSONObject("dbs").getJSONObject("db");
+
+        DetailDto dto = makeDetailDto(jobj1);
+        log.info("fetchByDetail 성공 = {}", result);
+
+        return dto;
+    }
+
+    /**
+     *
+     * @param data open api 를 통해 전달받은 데이터 (JSON)
+     * @return BoxofsDto
+     */
     public BoxofsDto makeBoxofsDto (JSONObject data){
 
         return BoxofsDto.builder()
@@ -95,6 +136,34 @@ public class OpenApiManager {
                 .prfdtcnt(data.has("prfdtcnt") ? (int) data.get("prfdtcnt") : null)
                 .prfplcnm(data.has("prfplcnm") ? (String) data.get("prfplcnm") : null)
                 .seatcnt(data.has("seatcnt") ? (int) data.get("seatcnt") : null)
+                .build();
+    }
+
+    /**
+     *
+     * @param data open api 를 통해 전달받은 데이터 (JSON)
+     * @return DetailDto
+     */
+    public DetailDto makeDetailDto (JSONObject data){
+        return DetailDto.builder()
+                .entrpsnm(data.has("entrpsnm") ? (String) data.get("entrpsnm") : null)
+                .fcltynm(data.has("fcltynm") ? (String) data.get("fcltynm") : null)
+                .genrenm(data.has("genrenm") ? (String) data.get("genrenm") : null)
+                .mt10id(data.has("mt10id") ? (String) data.get("mt10id") : null)
+                .openrun(data.has("openrun") ? (String) data.get("openrun") : null)
+                .prfage(data.has("prfage") ? (String) data.get("prfage") : null)
+                .prfcast(data.has("prfcast") ? (String) data.get("prfcast") : null)
+                .prfcrew(data.has("prfcrew") ? (String) data.get("prfcrew") : null)
+                .dtguidance(data.has("dtguidance") ? (String) data.get("dtguidance") : null)
+                .pcseguidance(data.has("pcseguidance") ? (String) data.get("pcseguidance") : null)
+                .prfpdto(data.has("prfpdto") ? (String) data.get("prfpdto") : null)
+                .prfruntime(data.has("prfruntime") ? (String) data.get("prfruntime") : null)
+                .prfpdfrom(data.has("prfpdfrom") ? (String) data.get("prfpdfrom") : null)
+                .sty(data.has("sty") ? (String) data.get("sty") : null)
+                .prfstate(data.has("prfstate") ? (String) data.get("prfstate") : null)
+                .prfnm(data.has("prfnm") ? (String) data.get("prfnm") : null)
+                .poster(data.has("poster") ? (String) data.get("poster") : null)
+                .mt20id(data.has("mt20id") ? (String) data.get("mt20id") : null)
                 .build();
     }
 }

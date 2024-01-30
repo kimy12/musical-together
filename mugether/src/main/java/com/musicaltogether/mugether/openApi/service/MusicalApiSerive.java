@@ -1,6 +1,7 @@
 package com.musicaltogether.mugether.openApi.service;
 
 import com.musicaltogether.mugether.openApi.dto.BoxofsDto;
+import com.musicaltogether.mugether.openApi.dto.DetailDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,16 @@ public class MusicalApiSerive {
     public List<BoxofsDto> getBoxOfsList (String catgry, String ststype, String date){
         if("musical".equals(catgry)) return openApiManager.fetchByBoxOfs(ststype, date, GENRE_MUSICAL); // 뮤지컬
         return openApiManager.fetchByBoxOfs(ststype, date, GENRE_PLAY); // 연극
+    }
+
+    /**
+     * 공연 아이디로 공연 상세를 불러온다.
+     * @param showId 공연 아이디
+     * @return
+     */
+    public DetailDto getDetailById (String showId){
+
+        return openApiManager.fetchByDetail(showId);
     }
 
 }
