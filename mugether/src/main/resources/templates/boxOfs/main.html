@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog Grids | Play Tailwind</title>
+  <title>Show Up</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
   <link rel="stylesheet" th:href="@{/assets/css/output.css}" />
   <link rel="shortcut icon" th:href="@{/assets/images/favicon.png}" type="image/x-icon" />
   <link rel="stylesheet" th:href="@{/assets/css/animate.css}" />
@@ -258,8 +259,8 @@
             </div>
             <div>
               <span
-                class="inline-block px-4 py-0.5 mb-6 text-xs font-medium leading-loose text-center text-white rounded-[5px] bg-primary">
-                Dec 22, 2023
+                class="inline-block px-4 py-0.5 mb-6 text-xs font-medium leading-loose text-center text-white rounded-[5px] bg-primary"
+                th:text="${boxof.prfpd}">
               </span>
               <h3>
                 <a href="blog-details.html"
@@ -274,214 +275,6 @@
             </div>
           </div>
         </div>
-<!--        <div class="w-full px-4 md:w-1/2 lg:w-1/3">-->
-<!--          <div class="mb-10 wow fadeInUp group" data-wow-delay=".15s">-->
-<!--            <div class="mb-8 overflow-hidden rounded-[5px]">-->
-<!--              <a href="blog-details.html" class="block">-->
-<!--                <img src="assets/images/blog/blog-02.jpg" alt="image"-->
-<!--                  class="w-full transition group-hover:rotate-6 group-hover:scale-125" />-->
-<!--              </a>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--              <span-->
-<!--                class="inline-block px-4 py-0.5 mb-6 text-xs font-medium leading-loose text-center text-white rounded-[5px] bg-primary">-->
-<!--                Mar 15, 2023-->
-<!--              </span>-->
-<!--              <h3>-->
-<!--                <a href="blog-details.html"-->
-<!--                  class="inline-block mb-4 text-xl font-semibold text-dark dark:text-white hover:text-primary dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">-->
-<!--                  How to earn more money as a wellness coach-->
-<!--                </a>-->
-<!--              </h3>-->
-<!--              <p class="max-w-[370px] text-base text-body-color dark:text-dark-6">-->
-<!--                Lorem Ipsum is simply dummy text of the printing and-->
-<!--                typesetting industry.-->
-<!--              </p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="w-full px-4 md:w-1/2 lg:w-1/3">-->
-<!--          <div class="mb-10 wow fadeInUp group" data-wow-delay=".2s">-->
-<!--            <div class="mb-8 overflow-hidden rounded-[5px]">-->
-<!--              <a href="blog-details.html" class="block">-->
-<!--                <img src="assets/images/blog/blog-03.jpg" alt="image"-->
-<!--                  class="w-full transition group-hover:rotate-6 group-hover:scale-125" />-->
-<!--              </a>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--              <span-->
-<!--                class="inline-block px-4 py-0.5 mb-6 text-xs font-medium leading-loose text-center text-white rounded-[5px] bg-primary">-->
-<!--                Jan 05, 2023-->
-<!--              </span>-->
-<!--              <h3>-->
-<!--                <a href="blog-details.html"-->
-<!--                  class="inline-block mb-4 text-xl font-semibold text-dark dark:text-white hover:text-primary dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">-->
-<!--                  The no-fuss guide to upselling and cross selling-->
-<!--                </a>-->
-<!--              </h3>-->
-<!--              <p class="max-w-[370px] text-base text-body-color dark:text-dark-6">-->
-<!--                Lorem Ipsum is simply dummy text of the printing and-->
-<!--                typesetting industry.-->
-<!--              </p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="w-full px-4 md:w-1/2 lg:w-1/3">-->
-<!--          <div class="mb-10 wow fadeInUp group" data-wow-delay=".1s">-->
-<!--            <div class="mb-8 overflow-hidden rounded-[5px]">-->
-<!--              <a href="blog-details.html" class="block">-->
-<!--                <img src="assets/images/blog/blog-02.jpg" alt="image"-->
-<!--                  class="w-full transition group-hover:rotate-6 group-hover:scale-125" />-->
-<!--              </a>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--              <span-->
-<!--                class="inline-block px-4 py-0.5 mb-6 text-xs font-medium leading-loose text-center text-white rounded-[5px] bg-primary">-->
-<!--                Mar 15, 2023-->
-<!--              </span>-->
-<!--              <h3>-->
-<!--                <a href="blog-details.html"-->
-<!--                  class="inline-block mb-4 text-xl font-semibold text-dark dark:text-white hover:text-primary dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">-->
-<!--                  How to earn more money as a wellness coach-->
-<!--                </a>-->
-<!--              </h3>-->
-<!--              <p class="max-w-[370px] text-base text-body-color dark:text-dark-6">-->
-<!--                Lorem Ipsum is simply dummy text of the printing and-->
-<!--                typesetting industry.-->
-<!--              </p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="w-full px-4 md:w-1/2 lg:w-1/3">-->
-<!--          <div class="mb-10 wow fadeInUp group" data-wow-delay=".15s">-->
-<!--            <div class="mb-8 overflow-hidden rounded-[5px]">-->
-<!--              <a href="blog-details.html" class="block">-->
-<!--                <img src="assets/images/blog/blog-03.jpg" alt="image"-->
-<!--                  class="w-full transition group-hover:rotate-6 group-hover:scale-125" />-->
-<!--              </a>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--              <span-->
-<!--                class="inline-block px-4 py-0.5 mb-6 text-xs font-medium leading-loose text-center text-white rounded-[5px] bg-primary">-->
-<!--                Jan 05, 2023-->
-<!--              </span>-->
-<!--              <h3>-->
-<!--                <a href="blog-details.html"-->
-<!--                  class="inline-block mb-4 text-xl font-semibold text-dark dark:text-white hover:text-primary dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">-->
-<!--                  The no-fuss guide to upselling and cross selling-->
-<!--                </a>-->
-<!--              </h3>-->
-<!--              <p class="max-w-[370px] text-base text-body-color dark:text-dark-6">-->
-<!--                Lorem Ipsum is simply dummy text of the printing and-->
-<!--                typesetting industry.-->
-<!--              </p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="w-full px-4 md:w-1/2 lg:w-1/3">-->
-<!--          <div class="mb-10 wow fadeInUp group" data-wow-delay=".2s">-->
-<!--            <div class="mb-8 overflow-hidden rounded-[5px]">-->
-<!--              <a href="blog-details.html" class="block">-->
-<!--                <img src="assets/images/blog/blog-01.jpg" alt="image"-->
-<!--                  class="w-full transition group-hover:rotate-6 group-hover:scale-125" />-->
-<!--              </a>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--              <span-->
-<!--                class="inline-block px-4 py-0.5 mb-6 text-xs font-medium leading-loose text-center text-white rounded-[5px] bg-primary">-->
-<!--                Dec 22, 2023-->
-<!--              </span>-->
-<!--              <h3>-->
-<!--                <a href="blog-details.html"-->
-<!--                  class="inline-block mb-4 text-xl font-semibold text-dark dark:text-white hover:text-primary dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">-->
-<!--                  Meet AutoManage, the best AI management tools-->
-<!--                </a>-->
-<!--              </h3>-->
-<!--              <p class="max-w-[370px] text-base text-body-color dark:text-dark-6">-->
-<!--                Lorem Ipsum is simply dummy text of the printing and-->
-<!--                typesetting industry.-->
-<!--              </p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="w-full px-4 md:w-1/2 lg:w-1/3">-->
-<!--          <div class="mb-10 wow fadeInUp group" data-wow-delay=".1s">-->
-<!--            <div class="mb-8 overflow-hidden rounded-[5px]">-->
-<!--              <a href="blog-details.html" class="block">-->
-<!--                <img src="assets/images/blog/blog-01.jpg" alt="image"-->
-<!--                  class="w-full transition group-hover:rotate-6 group-hover:scale-125" />-->
-<!--              </a>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--              <span-->
-<!--                class="inline-block px-4 py-0.5 mb-6 text-xs font-medium leading-loose text-center text-white rounded-[5px] bg-primary">-->
-<!--                Dec 22, 2023-->
-<!--              </span>-->
-<!--              <h3>-->
-<!--                <a href="blog-details.html"-->
-<!--                  class="inline-block mb-4 text-xl font-semibold text-dark dark:text-white hover:text-primary dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">-->
-<!--                  Meet AutoManage, the best AI management tools-->
-<!--                </a>-->
-<!--              </h3>-->
-<!--              <p class="max-w-[370px] text-base text-body-color dark:text-dark-6">-->
-<!--                Lorem Ipsum is simply dummy text of the printing and-->
-<!--                typesetting industry.-->
-<!--              </p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="w-full px-4 md:w-1/2 lg:w-1/3">-->
-<!--          <div class="mb-10 wow fadeInUp group" data-wow-delay=".15s">-->
-<!--            <div class="mb-8 overflow-hidden rounded-[5px]">-->
-<!--              <a href="blog-details.html" class="block">-->
-<!--                <img src="assets/images/blog/blog-02.jpg" alt="image"-->
-<!--                  class="w-full transition group-hover:rotate-6 group-hover:scale-125" />-->
-<!--              </a>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--              <span-->
-<!--                class="inline-block px-4 py-0.5 mb-6 text-xs font-medium leading-loose text-center text-white rounded-[5px] bg-primary">-->
-<!--                Mar 15, 2023-->
-<!--              </span>-->
-<!--              <h3>-->
-<!--                <a href="blog-details.html"-->
-<!--                  class="inline-block mb-4 text-xl font-semibold text-dark dark:text-white hover:text-primary dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">-->
-<!--                  How to earn more money as a wellness coach-->
-<!--                </a>-->
-<!--              </h3>-->
-<!--              <p class="max-w-[370px] text-base text-body-color dark:text-dark-6">-->
-<!--                Lorem Ipsum is simply dummy text of the printing and-->
-<!--                typesetting industry.-->
-<!--              </p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="w-full px-4 md:w-1/2 lg:w-1/3">-->
-<!--          <div class="mb-10 wow fadeInUp group" data-wow-delay=".2s">-->
-<!--            <div class="mb-8 overflow-hidden rounded-[5px]">-->
-<!--              <a href="blog-details.html" class="block">-->
-<!--                <img src="assets/images/blog/blog-03.jpg" alt="image"-->
-<!--                  class="w-full transition group-hover:rotate-6 group-hover:scale-125" />-->
-<!--              </a>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--              <span-->
-<!--                class="inline-block px-4 py-0.5 mb-6 text-xs font-medium leading-loose text-center text-white rounded-[5px] bg-primary">-->
-<!--                Jan 05, 2023-->
-<!--              </span>-->
-<!--              <h3>-->
-<!--                <a href="blog-details.html"-->
-<!--                  class="inline-block mb-4 text-xl font-semibold text-dark dark:text-white hover:text-primary dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">-->
-<!--                  The no-fuss guide to upselling and cross selling-->
-<!--                </a>-->
-<!--              </h3>-->
-<!--              <p class="max-w-[370px] text-base text-body-color dark:text-dark-6">-->
-<!--                Lorem Ipsum is simply dummy text of the printing and-->
-<!--                typesetting industry.-->
-<!--              </p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
       </div>
 
       <div class="mt-8 text-center wow fadeInUp" data-wow-delay=".2s">
@@ -905,19 +698,19 @@
   <!-- ====== Back To Top End -->
 
   <!-- ====== Made With Button Start -->
-  <a target="_blank" rel="nofollow noopener"
-    class="inline-flex items-center gap-[10px] py-2 px-[14px] rounded-lg bg-white dark:bg-dark-2 shadow-2 fixed bottom-8 left-4 sm:left-9 z-[999]"
-    href="https://tailgrids.com/">
-    <span class="text-base font-medium text-dark-3 dark:text-dark-6">
-      Made with
-    </span>
-    <span class="block w-px h-4 bg-stroke dark:bg-dark-3"></span>
-    <span class="block max-w-[88px] w-full">
-      <img th:src="@{/assets/images/brands/tailgrids.svg}" alt="tailgrids" class="dark:hidden">
-      <img th:src="@{/assets/images/brands/tailgrids-white.svg}" alt="tailgrids" class="hidden dark:block">
-    </span>
-  </a>
-  <!-- ====== Made With Button End -->
+<!--  <a target="_blank" rel="nofollow noopener"-->
+<!--    class="inline-flex items-center gap-[10px] py-2 px-[14px] rounded-lg bg-white dark:bg-dark-2 shadow-2 fixed bottom-8 left-4 sm:left-9 z-[999]"-->
+<!--    href="https://tailgrids.com/">-->
+<!--    <span class="text-base font-medium text-dark-3 dark:text-dark-6">-->
+<!--      Made with-->
+<!--    </span>-->
+<!--    <span class="block w-px h-4 bg-stroke dark:bg-dark-3"></span>-->
+<!--    <span class="block max-w-[88px] w-full">-->
+<!--      <img th:src="@{/assets/images/brands/tailgrids.svg}" alt="tailgrids" class="dark:hidden">-->
+<!--      <img th:src="@{/assets/images/brands/tailgrids-white.svg}" alt="tailgrids" class="hidden dark:block">-->
+<!--    </span>-->
+<!--  </a>-->
+<!--  &lt;!&ndash; ====== Made With Button End &ndash;&gt;-->
 
   <!-- ====== All Scripts -->
 <!--  <script src="assets/js/main.js"></script>-->

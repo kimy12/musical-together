@@ -20,8 +20,8 @@ import java.util.List;
 public class OpenApiManager {
 
     //조회 메서드
-    public List<BoxofsDto> fetchByArea (String ststype, String date, String catecode){
-        String areaUrl = makeAreaUrl(ststype, date, catecode);
+    public List<BoxofsDto> fetchByBoxOfs (String ststype, String date, String catecode){
+        String areaUrl = makeBasicUrl(ststype, date, catecode);
         return fetch(areaUrl);
     }
 
@@ -50,12 +50,13 @@ public class OpenApiManager {
      * @param catecode 카테 고리 : AAAA(연극), GGGA(뮤지컬)
      * @return 박스 오피스 순 목록 URL
      */
-    private String makeAreaUrl (String ststype, String date, String catecode) {
+    private String makeBasicUrl (String ststype, String date, String catecode) {
 
         return setBaseUrlForShow() + "&ststype=" + ststype + "&date=" + date + "&catecode=" + catecode;
     }
 
     public List<BoxofsDto> fetch (String url) {
+        log.info("요청 url = {}" , url);
 
         // open api 에서 받은 데이터 (xml -> json 파싱 -> BoxofsDto)
         List<BoxofsDto> result = new ArrayList<>();
@@ -71,7 +72,6 @@ public class OpenApiManager {
 
         JSONArray jarr = jobj1.getJSONArray("boxof");
 
-        log.info(String.valueOf(jarr.length()));
         for (Object j : jarr) {
             JSONObject item = (JSONObject) j;
             BoxofsDto dto = makeBoxofsDto(item);
@@ -85,16 +85,16 @@ public class OpenApiManager {
     public BoxofsDto makeBoxofsDto (JSONObject data){
 
         return BoxofsDto.builder()
-                .area((String) data.get("area"))
-                .cate((String) data.get("cate"))
-                .prfnm((String) data.get("prfnm"))
-                .prfpd((String) data.get("prfpd"))
-                .mt20id((String) data.get("mt20id"))
-                .rnum((int) data.get("rnum"))
-                .poster("http://kopis.or.kr/" + (String) data.get("poster")) // poster 사진 경로
-                .prfdtcnt((int) data.get("prfdtcnt"))
-                .prfplcnm((String) data.get("prfplcnm"))
-                .seatcnt((int) data.get("seatcnt"))
+                .area(data.has("area") ? (String) data.get("area") : null)
+                .cate(data.has("cate") ? (String) data.get("cate") : null)
+                .prfnm(data.has("prfnm") ? (String) data.get("prfnm") : null)
+                .prfpd(data.has("prfpd") ? (String) data.get("prfpd") : null)
+                .mt20id(data.has("mt20id") ? (String) data.get("mt20id") : null)
+                .rnum(data.has("rnum") ? (int) data.get("rnum") : null)
+                .poster(data.has("poster") ? "http://kopis.or.kr/" + (String) data.get("poster"): null) // poster 사진 경로
+                .prfdtcnt(data.has("prfdtcnt") ? (int) data.get("prfdtcnt") : null)
+                .prfplcnm(data.has("prfplcnm") ? (String) data.get("prfplcnm") : null)
+                .seatcnt(data.has("seatcnt") ? (int) data.get("seatcnt") : null)
                 .build();
     }
 }

@@ -27,14 +27,15 @@ public class MusicalApiSerive {
     private final OpenApiManager openApiManager;
 
     /**
-     * 박스오피스 순위 순 으로 뮤지컬리스트를 불러온다.
+     * 박스오피스 순위 순 으로 리스트를 불러온다.
      *
      * @param ststype 날짜 타입 : 년.월.일
      * @param date 날짜
      * @return
      */
-    public List<BoxofsDto> getBoxOfsList (String ststype, String date){
-
-        return openApiManager.fetchByArea(ststype, date, GENRE_MUSICAL);
+    public List<BoxofsDto> getBoxOfsList (String catgry, String ststype, String date){
+        if("musical".equals(catgry)) return openApiManager.fetchByBoxOfs(ststype, date, GENRE_MUSICAL); // 뮤지컬
+        return openApiManager.fetchByBoxOfs(ststype, date, GENRE_PLAY); // 연극
     }
+
 }
