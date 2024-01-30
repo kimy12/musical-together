@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["../src/main/resources/templates/**/*.html", "../assets/**/*.js"],
+  content: ["./mugether/src/main/resources/templates/**/*.html", "./mugether/src/main/resources/static/assets/**/*.js"],
   darkMode: "class",
     theme: {
       screens: {

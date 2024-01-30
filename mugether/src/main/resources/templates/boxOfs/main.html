@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog Grids | Play Tailwind</title>
-  <link rel="stylesheet" th:href="@{/tailwind.css}" />
+  <link rel="stylesheet" th:href="@{/assets/css/output.css}" />
   <link rel="shortcut icon" th:href="@{/assets/images/favicon.png}" type="image/x-icon" />
   <link rel="stylesheet" th:href="@{/assets/css/animate.css}" />
   <link rel="stylesheet" th:href="@{/assets/css/tailwind.css}" />
@@ -253,7 +253,7 @@
             <div class="mb-8 overflow-hidden rounded-[5px]">
               <a href="blog-details.html" class="block">
                 <img th:src="${boxof.poster}" alt="image"
-                  class="w-full transition group-hover:rotate-6 group-hover:scale-125" />
+                  class="object-contain contain w-full transition group-hover:rotate-6 group-hover:scale-125" />
               </a>
             </div>
             <div>
