@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 @Slf4j
-public class MusicalApiSerive {
+public class PlayApiService {
 
     // 페이지 당 목록 수
     private final int DEFAULT_ROWS = 10;

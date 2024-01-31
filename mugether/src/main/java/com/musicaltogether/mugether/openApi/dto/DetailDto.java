@@ -3,12 +3,14 @@ package com.musicaltogether.mugether.openApi.dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @Builder
+@Getter
 public class DetailDto {
     /**
      *  OPEN API 통해 가져온 데이터를 받는 DTO : 공연 상세

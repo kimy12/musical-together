@@ -1,14 +1,15 @@
 package com.musicaltogether.mugether.show.domain;
 
+import com.musicaltogether.mugether.openApi.dto.BoxofsDto;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
 @Entity
-@Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder(builderMethodName = "ShowBuilder")
 public class Show {
 
     @Id
@@ -40,6 +41,18 @@ public class Show {
     private int prfdtcnt; // 공연 횟수
 
     @Column(name = "reg_dt")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date regDt = new Date();
+
+    public static ShowBuilder builder (BoxofsDto dto){
+        return ShowBuilder()
+                .mt20id(dto.getMt20id())
+                .area(dto.getArea())
+                .cate(dto.getCate())
+                .prfnm(dto.getPrfnm())
+                .poster(dto.getPoster())
+                .prfdtcnt(dto.getPrfdtcnt())
+                .rnum(dto.getRnum())
+                .prfpd(dto.getPrfpd());
+    }
 }

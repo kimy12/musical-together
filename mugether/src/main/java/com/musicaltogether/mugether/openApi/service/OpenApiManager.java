@@ -90,7 +90,6 @@ public class OpenApiManager {
         for (Object j : jarr) {
             JSONObject item = (JSONObject) j;
             BoxofsDto dto = makeBoxofsDto(item);
-//            log.info("{}",makeBoxofsDto(item));
             if (dto != null) result.add(dto);
         }
         log.info("fetch 성공 = {}", result);

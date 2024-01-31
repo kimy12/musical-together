@@ -1,6 +1,6 @@
 package com.musicaltogether.mugether.openApi.controller;
 
-import com.musicaltogether.mugether.openApi.service.MusicalApiSerive;
+import com.musicaltogether.mugether.openApi.service.PlayApiService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class BoxofsController {
 
-    private final MusicalApiSerive musicalApiSerive;
+    private final PlayApiService musicalApiSerive;
 
     @RequestMapping("/")
     public String home(){

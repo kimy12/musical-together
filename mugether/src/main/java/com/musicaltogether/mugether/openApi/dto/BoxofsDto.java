@@ -12,6 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @Builder
+@Getter
 public class BoxofsDto {
         /**
          *  OPEN API 통해 가져온 데이터를 받는 DTO : 박스오피스 순
