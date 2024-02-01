@@ -24,13 +24,19 @@ public class ShowService {
         showInfoRepository.save(show);
     }
 
+    /**
+     * 뮤지컬 or 연극 정보를 저장한다.
+     * @param id : 공연 pk
+     * @return
+     */
     @Transactional
-    public Show saveShowInfo(ShowForm form){
-        Show show = showInfoRepository.findOne(form.getShowId());
+    public Show saveShowInfo(String id){
+        Show show = showInfoRepository.findOne(id);
         if(show!=null) return show; // showId가 존재하고 있었으면 리턴
-        DetailDto dto = openApiManager.fetchByDetail(form.getShowId());
-
-        return show;
+        DetailDto dto = openApiManager.fetchByDetail(id);
+        Show entity = Show.builderForD(dto).build();
+        showInfoRepository.save(entity); // 저장
+        return entity;
     }
     public Show findOne (String showId){
         return showInfoRepository.findOne(showId);

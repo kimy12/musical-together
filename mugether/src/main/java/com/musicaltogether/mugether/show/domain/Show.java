@@ -61,6 +61,20 @@ public class Show {
 
     private String prfage; // 연령
 
+    @Column(name = "price")
+    private String pcseguidance; // 티켓 가격
+
+    @Column(name = "state")
+    private String prfstate; // 공연 상태
+
+    @Column(name = "plc_code")
+    private String mt10id; // 공연장소 코드
+
+    /**
+     * 박스오피스 리스트 더미데이터용 빌더
+     * @param dto
+     * @return
+     */
     public static ShowBuilder builder (BoxofsDto dto){
         return ShowBuilder()
                 .mt20id(dto.getMt20id())
@@ -82,6 +96,12 @@ public class Show {
                 .prfplcnm(dto.getFcltynm())
                 .prfcast(dto.getPrfcast())
                 .prfruntime(dto.getPrfruntime())
-                .prfage(dto.getPrfage());
+                .prfage(dto.getPrfage())
+                .pcseguidance(dto.getPcseguidance())
+                .poster(dto.getPoster())
+                .cate(dto.getGenrenm())
+                .prfstate(dto.getPrfstate())
+                .mt10id(dto.getMt10id());
+
     }
 }
