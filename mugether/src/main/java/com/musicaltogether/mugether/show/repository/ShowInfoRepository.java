@@ -13,4 +13,8 @@ public class ShowInfoRepository{
     public void save (Show show){
         em.persist(show);
     }
+
+    public Show findOne(String showId){
+        return em.find(Show.class, showId);
+    }
 }

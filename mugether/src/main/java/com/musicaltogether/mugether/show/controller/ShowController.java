@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class ShowController {
      * @param date 날짜
      */
     @GetMapping("/saveShowList/{datetyp}/{date}")
-    public void getShowByApi (@PathVariable("datetyp") String datetyp,
+    public String getShowByApi (@PathVariable("datetyp") String datetyp,
                               @PathVariable("date") String date) {
 
         String catgry = "musical"; // 뮤지컬
@@ -35,7 +36,14 @@ public class ShowController {
             Show entity = Show.builder(dto).build();
             showService.saveShowInfo(entity);
         }
+        return "boxOfs/main";
+    }
 
+    @PostMapping("/boxofs/show")
+    public String getDetailbyApi (ShowForm form){
+
+
+        return "redirect:/";
     }
 
 }
