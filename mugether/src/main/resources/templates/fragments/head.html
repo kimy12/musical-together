@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="headFragment">
+        <head>
+            <meta charset="UTF-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Show Up</title>
+            <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+            <link rel="stylesheet" th:href="@{/assets/css/output.css}" />
+            <link rel="shortcut icon" th:href="@{/assets/images/favicon.png}" type="image/x-icon" />
+            <link rel="stylesheet" th:href="@{/assets/css/animate.css}" />
+            <link rel="stylesheet" th:href="@{/assets/css/tailwind.css}" />
+
+            <!-- ==== WOW JS ==== -->
+            <!--  <script src="assets/js/wow.min.js"></script>-->
+            <script type="text/javascript" th:src="@{/assets/js/wow.min.js}"></script>
+            <script>
+                new WOW().init();
+            </script>
+        </head>
+    </th:block>
+</html>
