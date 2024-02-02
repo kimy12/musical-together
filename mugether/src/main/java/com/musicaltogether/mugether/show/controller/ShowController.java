@@ -50,9 +50,9 @@ public class ShowController {
     @GetMapping("/boxofs/{showId}/show")
     public String getDetailbyApi (@PathVariable(name = "showId") String showId, Model model){
 
-        model.addAttribute("showInfo", showService.saveShowInfo(showId));
-
-        return "redirect:/";
+        Show show = showService.saveShowInfo(showId);
+        model.addAttribute("showInfo", show);
+        return "boxOfs/show-details";
     }
 
 }

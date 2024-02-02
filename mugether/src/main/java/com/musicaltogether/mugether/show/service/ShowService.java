@@ -33,7 +33,7 @@ public class ShowService {
     public Show saveShowInfo(String id){
         Show show = showInfoRepository.findOne(id);
         if(show!=null) return show; // showId가 존재하고 있었으면 리턴
-        DetailDto dto = openApiManager.fetchByDetail(id);
+        DetailDto dto = openApiManager.fetchByDetail(id); // open api
         Show entity = Show.builderForD(dto).build();
         showInfoRepository.save(entity); // 저장
         return entity;
