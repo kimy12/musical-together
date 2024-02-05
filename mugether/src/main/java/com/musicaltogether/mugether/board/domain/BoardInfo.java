@@ -2,12 +2,16 @@ package com.musicaltogether.mugether.board.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "board_info")
 @Getter
-public class Info {
+public class BoardInfo {
 
+    @Column(name = "board_id")
     private Long id; // 게시판 아이디
 
     @Column(name = "show_id")
@@ -20,7 +24,12 @@ public class Info {
 
     private String catgry; // 게시판 종류
 
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
     private Board board;
+
+    public void setBoard(Board board){
+        this.board = board;
+        board.setBoardInfo(this);
+    }
 }
