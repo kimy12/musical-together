@@ -35,10 +35,10 @@ public class Show {
     private String prfpd; // 공연 기간*/
 
     @Column(name = "prd_from")
-    private String prfpdfrom;
+    private String prfpdfrom; // 공연 시작
 
     @Column(name = "prd_to")
-    private String prfpdto;
+    private String prfpdto; // 공연 종료
 
     @Column(name = "poster_path")
     private String poster; // 포스터이미지경로
@@ -60,9 +60,10 @@ public class Show {
     @Column(name = "show_rntime")
     private String prfruntime; // 러닝 타임
 
+    @Column(name = "show_age")
     private String prfage; // 연령
 
-    @Column(name = "price")
+    @Column(name = "ticket_price")
     private String pcseguidance; // 티켓 가격
 
     @Column(name = "state")
