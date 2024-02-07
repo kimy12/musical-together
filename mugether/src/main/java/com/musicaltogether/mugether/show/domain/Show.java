@@ -1,5 +1,6 @@
 package com.musicaltogether.mugether.show.domain;
 
+import com.musicaltogether.mugether.board.domain.BoardInfo;
 import com.musicaltogether.mugether.openApi.dto.BoxofsDto;
 import com.musicaltogether.mugether.openApi.dto.DetailDto;
 import jakarta.persistence.*;
@@ -7,7 +8,9 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -71,6 +74,9 @@ public class Show {
 
     @Column(name = "plc_code")
     private String mt10id; // 공연장소 코드
+
+    @OneToMany(mappedBy = "board_info")
+    private List<BoardInfo> boardInfos = new ArrayList<>();
 
     /**
      * 박스오피스 리스트 더미데이터용 빌더
