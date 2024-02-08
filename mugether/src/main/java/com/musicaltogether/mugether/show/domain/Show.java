@@ -78,6 +78,12 @@ public class Show {
     @OneToMany(mappedBy = "board_info")
     private List<BoardInfo> boardInfos = new ArrayList<>();
 
+    // 연관관계 메서드
+    public void addBoardInfos (BoardInfo boardInfo){
+        boardInfos.add(boardInfo);
+        boardInfo.setShow(this);
+    }
+
     /**
      * 박스오피스 리스트 더미데이터용 빌더
      * @param dto
@@ -109,7 +115,8 @@ public class Show {
                 .poster(dto.getPoster())
                 .cate(dto.getGenrenm())
                 .prfstate(dto.getPrfstate())
-                .mt10id(dto.getMt10id());
+                .mt10id(dto.getMt10id())
+                .regDt(LocalDateTime.now());
 
     }
 }
