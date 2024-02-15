@@ -36,6 +36,13 @@ public class BoardInfo {
     @JoinColumn(name = "board_id")
     private Board board;
 
+//    ==========연관관계 메서드========   //
+
+    public void setShow(Show show){
+        this.show = show;
+        show.getBoardInfos().add(this);
+    }
+
     public void setBoard(Board board){
         this.board = board;
         board.setBoardInfo(this);

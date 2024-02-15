@@ -75,14 +75,14 @@ public class Show {
     @Column(name = "plc_code")
     private String mt10id; // 공연장소 코드
 
-    @OneToMany(mappedBy = "board_info")
+    @OneToMany(mappedBy = "board_info") @Setter
     private List<BoardInfo> boardInfos = new ArrayList<>();
 
     // 연관관계 메서드
-    public void addBoardInfos (BoardInfo boardInfo){
-        boardInfos.add(boardInfo);
-        boardInfo.setShow(this);
-    }
+//    public void addBoardInfos (BoardInfo boardInfo){
+//        boardInfos.add(boardInfo);
+//        boardInfo.setShow(this);
+//    }
 
     /**
      * 박스오피스 리스트 더미데이터용 빌더
