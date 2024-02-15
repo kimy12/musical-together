@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class BoardInfo {
 
     @Id @GeneratedValue
-    @Column(name = "board_id")
+    @Column(name = "boardInfo_id")
     private Long id; // 게시판 아이디
 
     private String showId; // 공연 아이디
@@ -32,8 +32,12 @@ public class BoardInfo {
     @Setter
     private Show show;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_id")
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "board_id")
+//    private Board board;
+
+    @OneToOne(mappedBy = "board_info", fetch = FetchType.LAZY)
+    @Setter
     private Board board;
 
 //    ==========연관관계 메서드========   //
@@ -43,8 +47,8 @@ public class BoardInfo {
         show.getBoardInfos().add(this);
     }
 
-    public void setBoard(Board board){
-        this.board = board;
-        board.setBoardInfo(this);
-    }
+//    public void setBoard(Board board){
+//        this.board = board;
+//        board.setBoardInfo(this);
+//    }
 }
