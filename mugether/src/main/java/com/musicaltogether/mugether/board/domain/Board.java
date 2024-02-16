@@ -30,18 +30,18 @@ public class Board {
 
     private Integer likeCnt = 0; // 좋아요
 
-//    @OneToOne(mappedBy = "board", fetch = FetchType.LAZY)
-//    @Setter
-//    private BoardInfo boardInfo;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "boardInfo_id")
+    @OneToOne(mappedBy = "board", fetch = FetchType.LAZY)
+    @Setter
     private BoardInfo boardInfo;
+
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "boardInfo_id")
+//    private BoardInfo boardInfo;
 
     //    ==========연관관계 메서드========   //
 
-    public void setBoardInfo (BoardInfo boardInfo){
-        this.boardInfo = boardInfo;
-        boardInfo.setBoard(this);
-    }
+//    public void setBoardInfo (BoardInfo boardInfo){
+//        this.boardInfo = boardInfo;
+//        boardInfo.setBoard(this);
+//    }
 }

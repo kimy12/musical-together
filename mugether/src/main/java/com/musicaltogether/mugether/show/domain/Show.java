@@ -75,7 +75,7 @@ public class Show {
     @Column(name = "plc_code")
     private String mt10id; // 공연장소 코드
 
-    @OneToMany(mappedBy = "board_info") @Setter
+    @OneToMany(mappedBy = "show") @Setter
     private List<BoardInfo> boardInfos = new ArrayList<>();
 
     // 연관관계 메서드

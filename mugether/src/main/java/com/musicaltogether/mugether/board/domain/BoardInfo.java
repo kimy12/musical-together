@@ -16,8 +16,6 @@ public class BoardInfo {
     @Column(name = "boardInfo_id")
     private Long id; // 게시판 아이디
 
-    private String showId; // 공연 아이디
-
     private LocalDateTime regId; // 게시판 생성 날짜
 
     private String status; // 게시판 상태
@@ -32,13 +30,13 @@ public class BoardInfo {
     @Setter
     private Show show;
 
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "board_id")
-//    private Board board;
-
-    @OneToOne(mappedBy = "board_info", fetch = FetchType.LAZY)
-    @Setter
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
     private Board board;
+
+//    @OneToOne(mappedBy = "board_info", fetch = FetchType.LAZY)
+//    @Setter
+//    private Board board;
 
 //    ==========연관관계 메서드========   //
 
