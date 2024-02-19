@@ -78,6 +78,9 @@ public class Show {
     @OneToMany(mappedBy = "show") @Setter
     private List<BoardInfo> boardInfos = new ArrayList<>();
 
+    @OneToMany(mappedBy = "show") @Setter
+    private List<Likes> showlikes = new ArrayList<>();
+
     // 연관관계 메서드
 //    public void addBoardInfos (BoardInfo boardInfo){
 //        boardInfos.add(boardInfo);
