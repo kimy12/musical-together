@@ -1,6 +1,7 @@
 package com.musicaltogether.mugether.show.domain;
 
 import com.musicaltogether.mugether.board.domain.BoardInfo;
+import com.musicaltogether.mugether.member.domain.BookMarks;
 import com.musicaltogether.mugether.openApi.dto.BoxofsDto;
 import com.musicaltogether.mugether.openApi.dto.DetailDto;
 import jakarta.persistence.*;
@@ -9,7 +10,6 @@ import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -79,7 +79,7 @@ public class Show {
     private List<BoardInfo> boardInfos = new ArrayList<>();
 
     @OneToMany(mappedBy = "show") @Setter
-    private List<Likes> showlikes = new ArrayList<>();
+    private List<BookMarks> showBookMarks = new ArrayList<>();
 
     // 연관관계 메서드
 //    public void addBoardInfos (BoardInfo boardInfo){

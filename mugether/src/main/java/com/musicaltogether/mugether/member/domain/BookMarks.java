@@ -1,16 +1,17 @@
-package com.musicaltogether.mugether.show.domain;
+package com.musicaltogether.mugether.member.domain;
 
+import com.musicaltogether.mugether.show.domain.Show;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "show_likes")
+@Table(name = "show_bookMarks")
 @Getter
-public class Likes {
+public class BookMarks {
 
     @Id @GeneratedValue
-    @Column(name = "likes_id")
+    @Column(name = "bookMark_id")
     private Long id;
 
     private String userId;
