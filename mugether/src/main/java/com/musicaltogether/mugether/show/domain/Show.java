@@ -1,7 +1,7 @@
 package com.musicaltogether.mugether.show.domain;
 
 import com.musicaltogether.mugether.board.domain.BoardInfo;
-import com.musicaltogether.mugether.member.domain.BookMarks;
+import com.musicaltogether.mugether.user.domain.BookMarks;
 import com.musicaltogether.mugether.openApi.dto.BoxofsDto;
 import com.musicaltogether.mugether.openApi.dto.DetailDto;
 import jakarta.persistence.*;
