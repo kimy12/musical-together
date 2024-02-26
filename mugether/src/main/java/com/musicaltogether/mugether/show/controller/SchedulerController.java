@@ -6,33 +6,26 @@ import com.musicaltogether.mugether.show.domain.Show;
 import com.musicaltogether.mugether.show.service.ShowService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@Controller
+@RestController
 @Slf4j
 @RequiredArgsConstructor
-public class ShowController {
+public class SchedulerController {
 
     private final PlayApiService playApiService;
     private final ShowService showService;
 
-    /**
-     * 공연 정보 더미 데이터를 넣는다. (뮤지컬)
-     *
-     */
-    @GetMapping("/saveShowList")
-    public String getShowByApi () {
+    @Scheduled(cron = "@monthly")
+    public void getShowByApi () {
 
         String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-
         String catgry = "musical"; // 뮤지컬
         List<BoxofsDto> listForSave = playApiService.getBoxOfsList(catgry, "month", date);
 
@@ -40,21 +33,5 @@ public class ShowController {
             Show entity = Show.builder(dto).build();
             showService.saveShowInfo(entity);
         }
-        return "boxOfs/main";
     }
-
-    /**
-     * 연극 or 뮤지컬 정보를 저장 및 가져온다.
-     * @param showId showId
-     * @param model
-     * @return
-     */
-    @GetMapping("/boxofs/{showId}/show")
-    public String getDetailbyApi (@PathVariable(name = "showId") String showId, Model model){
-
-        Show show = showService.saveShowInfo(showId);
-        model.addAttribute("showInfo", show);
-        return "boxOfs/show-details";
-    }
-
 }
