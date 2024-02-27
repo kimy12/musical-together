@@ -34,14 +34,14 @@ public class Show {
     @Column(name = "show_nm")
     private String prfnm; // 공연명
 
-    /*@Column(name = "show_prd")
-    private String prfpd; // 공연 기간*/
+    @Column(name = "show_prd")
+    private String prfpd; // 공연 기간
 
-    @Column(name = "prd_from")
+    /*@Column(name = "prd_from")
     private String prfpdfrom; // 공연 시작
 
     @Column(name = "prd_to")
-    private String prfpdto; // 공연 종료
+    private String prfpdto; // 공연 종료*/
 
     @Column(name = "poster_path")
     private String poster; // 포스터이미지경로
@@ -107,16 +107,14 @@ public class Show {
                 .poster(dto.getPoster())
                 .prfdtcnt(dto.getPrfdtcnt())
                 .rnum(dto.getRnum())
-                .regDt(LocalDateTime.now());
-                //.prfpd(dto.getPrfpd());
+                .regDt(LocalDateTime.now())
+                .prfpd(dto.getPrfpd());
     }
 
     public static ShowBuilder builderForD (DetailDto dto){
         return ShowBuilder()
                 .mt20id(dto.getMt20id())
                 .prfnm(dto.getPrfnm())
-                .prfpdfrom(dto.getPrfpdfrom())
-                .prfpdto(dto.getPrfpdto())
                 .prfplcnm(dto.getFcltynm())
                 .prfcast(dto.getPrfcast())
                 .prfruntime(dto.getPrfruntime())
