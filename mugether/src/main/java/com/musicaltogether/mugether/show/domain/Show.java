@@ -1,7 +1,7 @@
 package com.musicaltogether.mugether.show.domain;
 
 import com.musicaltogether.mugether.board.domain.BoardInfo;
-import com.musicaltogether.mugether.user.domain.BookMarks;
+import com.musicaltogether.mugether.user.domain.BookMark;
 import com.musicaltogether.mugether.openApi.dto.BoxofsDto;
 import com.musicaltogether.mugether.openApi.dto.DetailDto;
 import jakarta.persistence.*;
@@ -75,11 +75,14 @@ public class Show {
     @Column(name = "plc_code")
     private String mt10id; // 공연장소 코드
 
+    @Setter
+    private Integer bMarkCnt; // 북마크 수
+
     @OneToMany(mappedBy = "show") @Setter
     private List<BoardInfo> boardInfos = new ArrayList<>();
 
     @OneToMany(mappedBy = "show") @Setter
-    private List<BookMarks> showBookMarks = new ArrayList<>();
+    private List<BookMark> showBookMarks = new ArrayList<>();
 
     // 연관관계 메서드
 //    public void addBoardInfos (BoardInfo boardInfo){

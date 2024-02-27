@@ -2,6 +2,7 @@ package com.musicaltogether.mugether.user.domain;
 
 import com.musicaltogether.mugether.show.domain.Show;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "show_bookMarks")
 @Getter
-public class BookMarks {
+public class BookMark {
 
     @Id @GeneratedValue
     @Column(name = "bookMark_id")
@@ -42,10 +43,25 @@ public class BookMarks {
         this.createDate = LocalDateTime.now();
     }
 
-    public void createBookMark(Show show){
+    /**
+     * 북마크 cnt (북마크를 추가한다.)
+     * @param show
+     */
+    public void updateBookMark(Show show){
         this.show = show;
 //        this.user = user;
         this.userId = "testId";
         this.status = true;
+        this.show.setBMarkCnt(show.getBMarkCnt()+1);
     }
+
+    /**
+     * 북마크 cnt (북마크를 삭제한다.)
+     * @param show
+     */
+    public void updateUnBookMark(Show show){
+        this.show.setBMarkCnt(show.getBMarkCnt()-1);
+        this.status = false;
+    }
+
 }
