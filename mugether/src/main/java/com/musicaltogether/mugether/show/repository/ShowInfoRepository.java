@@ -5,6 +5,8 @@ import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class ShowInfoRepository{
@@ -16,5 +18,10 @@ public class ShowInfoRepository{
 
     public Show findOne(String showId){
         return em.find(Show.class, showId);
+    }
+
+    public List<Show> findAll() {
+        return em.createQuery("select i from Show i", Show.class)
+                .getResultList();
     }
 }

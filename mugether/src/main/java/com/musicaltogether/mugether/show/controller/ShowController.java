@@ -24,6 +24,12 @@ public class ShowController {
     private final PlayApiService playApiService;
     private final ShowService showService;
 
+    @GetMapping("/showList")
+    public String getshowList (Model model) {
+        model.addAttribute("resultList", showService.findAll());
+        return "boxOfs/main";
+    }
+
     /**
      * 공연 정보 더미 데이터를 넣는다. (뮤지컬)
      *

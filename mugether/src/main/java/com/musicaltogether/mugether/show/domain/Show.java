@@ -57,6 +57,9 @@ public class Show {
     @CreatedDate
     private LocalDateTime regDt; // 생성 날짜 (db)
 
+    @CreatedDate
+    private LocalDateTime editDt; // 수정 날짜 (db)
+
     @Column(name = "show_cast")
     private String prfcast; // 배우
 
@@ -103,7 +106,8 @@ public class Show {
                 .prfnm(dto.getPrfnm())
                 .poster(dto.getPoster())
                 .prfdtcnt(dto.getPrfdtcnt())
-                .rnum(dto.getRnum());
+                .rnum(dto.getRnum())
+                .regDt(LocalDateTime.now());
                 //.prfpd(dto.getPrfpd());
     }
 

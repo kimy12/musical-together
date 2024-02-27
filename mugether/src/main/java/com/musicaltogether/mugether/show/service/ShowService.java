@@ -11,6 +11,8 @@ import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -38,6 +40,11 @@ public class ShowService {
         showInfoRepository.save(entity); // 저장
         return entity;
     }
+
+    public List<Show> findAll(){
+        return showInfoRepository.findAll();
+    }
+
     public Show findOne (String showId){
         return showInfoRepository.findOne(showId);
     }
