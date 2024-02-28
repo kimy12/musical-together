@@ -20,7 +20,7 @@ public class BookMark {
 
     private String userId;
 
-    private boolean status;
+    private Boolean status ;
 
     /**
      * 연관관계의 주인으로 잡는다.

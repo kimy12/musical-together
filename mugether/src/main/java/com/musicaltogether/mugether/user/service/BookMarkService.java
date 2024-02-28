@@ -17,15 +17,17 @@ public class BookMarkService {
     private final BookMarkRepository bookMarkRepository;
     private final ShowInfoRepository showInfoRepository;
 
+    /**
+     * 북마크를 최초 설정하거나 취소합니다.
+     * @param showId, userId
+     */
     @Transactional
-    public void saveBookMark(BookMark bookMark) {
-        BookMark findBookMark = bookMarkRepository.findOne(bookMark);
+    public void saveBookMark(String showId, String userId) {
+        BookMark findBookMark = bookMarkRepository.findOne(showId, userId);
         if(findBookMark != null){
-            // show id
-            String showId = bookMark.getShow().getMt20id();
             Show show = showInfoRepository.findOne(showId);
-            findBookMark.updateUnBookMark(show);
-            return;
+            if (findBookMark.getStatus()) findBookMark.updateUnBookMark(show);
+            else findBookMark.updateBookMark(show);
         }
         bookMarkRepository.save(bookMark);
     }

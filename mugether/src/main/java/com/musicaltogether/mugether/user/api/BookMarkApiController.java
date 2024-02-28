@@ -5,6 +5,7 @@ import com.musicaltogether.mugether.user.service.BookMarkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -13,8 +14,9 @@ public class BookMarkApiController {
     private final BookMarkService bookMarkService;
 
     @PostMapping("/bookMark")
-    public void updateBookMark(@RequestBody BookMark bookMark){
-        bookMarkService.saveBookMark(bookMark);
+    public void updateBookMark(@RequestParam("showId") String showId,
+                               @RequestParam("userId") String userId){
+        bookMarkService.saveBookMark(showId, userId);
     }
 
 }
