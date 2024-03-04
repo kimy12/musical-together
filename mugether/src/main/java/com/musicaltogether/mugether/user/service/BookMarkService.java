@@ -24,11 +24,13 @@ public class BookMarkService {
     @Transactional
     public void saveBookMark(String showId, String userId) {
         BookMark findBookMark = bookMarkRepository.findOne(showId, userId);
+        Show show = showInfoRepository.findOne(showId);
         if(findBookMark != null){
-            Show show = showInfoRepository.findOne(showId);
-            if (findBookMark.getStatus()) findBookMark.updateUnBookMark(show);
-            else findBookMark.updateBookMark(show);
+            if (findBookMark.getStatus()) findBookMark.updateUnBookMark(show); // 북마크 off
+            else findBookMark.updateBookMark(show); // 북마크 on
+        } else {
+            //BookMark bookMark = BookMark.
         }
-        bookMarkRepository.save(bookMark);
+
     }
 }

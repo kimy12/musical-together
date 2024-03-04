@@ -44,6 +44,14 @@ public class BookMark {
     }
 
     /**
+     * 연관관계 메서드
+     */
+    public void setShow (Show show){
+        this.show = show;
+        show.getShowBookMarks().add(this);
+    }
+
+    /**
      * 북마크 cnt (북마크를 추가한다.)
      * @param show
      */
