@@ -151,18 +151,18 @@
     const bookMark = (showId) => {
         alert(showId);
 
-<!--      axios({-->
-<!--        method: "post",-->
-<!--        url: "/bookMark",-->
-<!--        data: {-->
-<!--          userId : "testUserId",-->
-<!--          showId : showId-->
-<!--        }-->
-<!--      }).then( res => {-->
-<!--        console.log("res : ", res);-->
-<!--      }).catch( err => {-->
-<!--        console.log("err : ", err);-->
-<!--      });-->
+      axios({
+        method: "post",
+        url: "/bookMark",
+        data: {
+          userId : "testUserId",
+          showId : showId
+        }
+      }).then( res => {
+        console.log("res : ", res);
+      }).catch( err => {
+        console.log("err : ", err);
+      });
     }
   </script>
 </th:block>

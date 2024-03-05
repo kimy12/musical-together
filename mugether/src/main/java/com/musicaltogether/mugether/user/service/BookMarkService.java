@@ -29,7 +29,8 @@ public class BookMarkService {
             if (findBookMark.getStatus()) findBookMark.updateUnBookMark(show); // 북마크 off
             else findBookMark.updateBookMark(show); // 북마크 on
         } else {
-            //BookMark bookMark = BookMark.
+            BookMark bookMark = BookMark.createBookMark(show); // 북마크 생성 (on)
+            bookMarkRepository.save(bookMark);
         }
 
     }

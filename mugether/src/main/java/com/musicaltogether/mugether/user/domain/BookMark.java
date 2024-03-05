@@ -20,6 +20,7 @@ public class BookMark {
 
     private String userId;
 
+    @Setter
     private Boolean status ;
 
     /**
@@ -50,6 +51,18 @@ public class BookMark {
         this.show = show;
         show.getShowBookMarks().add(this);
     }
+
+    // 생성 메서드
+    public static BookMark createBookMark(Show show){
+
+        BookMark bookMark = new BookMark();
+        bookMark.setShow(show);
+        bookMark.createDate();
+        bookMark.setStatus(true);
+        show.setBMarkCnt(show.getBMarkCnt()+1);
+        return bookMark;
+    }
+
 
     /**
      * 북마크 cnt (북마크를 추가한다.)
