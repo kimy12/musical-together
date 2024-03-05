@@ -9,8 +9,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "show_bookMarks")
+@Entity(name = "show_bookmarks")
+@Table(name = "show_bookmarks")
 @Getter
 public class BookMark {
 
@@ -18,6 +18,7 @@ public class BookMark {
     @Column(name = "bookMark_id")
     private Long id;
 
+    @Setter
     private String userId;
 
     @Setter
@@ -53,13 +54,15 @@ public class BookMark {
     }
 
     // 생성 메서드
-    public static BookMark createBookMark(Show show){
+    public static BookMark createBookMark(Show show, String userId){
 
         BookMark bookMark = new BookMark();
         bookMark.setShow(show);
-        bookMark.createDate();
+        bookMark.createDate(); // 날짜 생성
         bookMark.setStatus(true);
-        show.setBMarkCnt(show.getBMarkCnt()+1);
+        bookMark.setUserId(userId);
+
+        if (show.getBMarkCnt() == null) show.setBMarkCnt(1);
         return bookMark;
     }
 

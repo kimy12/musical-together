@@ -1,6 +1,7 @@
 package com.musicaltogether.mugether.user.api;
 
 import com.musicaltogether.mugether.user.domain.BookMark;
+import com.musicaltogether.mugether.user.dto.BookMarkDto;
 import com.musicaltogether.mugether.user.service.BookMarkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,13 +16,12 @@ public class BookMarkApiController {
 
     /**
      * 북마크를 true or false 처리한다.
-     * @param showId
-     * @param userId
+     * @param bookMarkDto
+     *
      */
     @PostMapping("/bookMark")
-    public void updateBookMark(@RequestParam("showId") String showId,
-                               @RequestParam("userId") String userId){
-        bookMarkService.saveBookMark(showId, userId);
+    public void updateBookMark(@RequestBody BookMarkDto bookMarkDto){
+        bookMarkService.saveBookMark(bookMarkDto);
     }
 
 }

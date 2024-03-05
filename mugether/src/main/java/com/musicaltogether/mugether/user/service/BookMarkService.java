@@ -3,11 +3,15 @@ package com.musicaltogether.mugether.user.service;
 import com.musicaltogether.mugether.show.domain.Show;
 import com.musicaltogether.mugether.show.repository.ShowInfoRepository;
 import com.musicaltogether.mugether.user.domain.BookMark;
+import com.musicaltogether.mugether.user.dto.BookMarkDto;
 import com.musicaltogether.mugether.user.repository.BookMarkRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,17 +23,22 @@ public class BookMarkService {
 
     /**
      * 북마크를 최초 설정하거나 취소합니다.
-     * @param showId, userId
+     * @param bookMarkDto
      */
     @Transactional
-    public void saveBookMark(String showId, String userId) {
-        BookMark findBookMark = bookMarkRepository.findOne(showId, userId);
-        Show show = showInfoRepository.findOne(showId);
-        if(findBookMark != null){
+    public void saveBookMark(BookMarkDto bookMarkDto) {
+        //Optional<BookMark> findBookMark = bookMarkRepository.findBookMarks(bookMarkDto);
+        BookMark findBookMark = bookMarkRepository
+                .findBookMarks(bookMarkDto).orElseGet(BookMark::new);
+
+        String userId = bookMarkDto.getShowId(); // userId (임시)
+
+        Show show = showInfoRepository.findOne(userId);
+        if(!Objects.isNull(findBookMark.getShow())){
             if (findBookMark.getStatus()) findBookMark.updateUnBookMark(show); // 북마크 off
             else findBookMark.updateBookMark(show); // 북마크 on
         } else {
-            BookMark bookMark = BookMark.createBookMark(show); // 북마크 생성 (on)
+            BookMark bookMark = BookMark.createBookMark(show, userId); // 북마크 생성 (on)
             bookMarkRepository.save(bookMark);
         }
 

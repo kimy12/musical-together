@@ -1,9 +1,13 @@
 package com.musicaltogether.mugether.user.repository;
 
 import com.musicaltogether.mugether.user.domain.BookMark;
+import com.musicaltogether.mugether.user.dto.BookMarkDto;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -13,10 +17,19 @@ public class BookMarkRepository {
 
     public void save(BookMark bookMark) {em.persist(bookMark);}
 
-    public BookMark findOne(String showId, String userId){
-        return em.createQuery("select b from show_book_marks b where b.show_id = :showId and b.user_id = :userId", BookMark.class)
-                .setParameter("showId", showId)
-                .setParameter("userId", userId)
-                .getSingleResult();
+    public Optional<BookMark> findBookMarks (BookMarkDto bookMarkDto){
+        List<BookMark> bookMarks = em.createQuery("select b from show_bookmarks b where b.show.mt20id = :showId and b.userId = :userId", BookMark.class)
+                .setParameter("showId", bookMarkDto.getUserId())
+                .setParameter("userId", bookMarkDto.getShowId())
+                .getResultList();
+
+        return bookMarks.stream().findAny();
     }
+
+//    public BookMark findOne(BookMarkDto bookMarkDto){
+//        return em.createQuery("select b from show_bookmarks b where b.show.mt20id = :showId and b.userId = :userId", BookMark.class)
+//                .setParameter("showId", bookMarkDto.getUserId())
+//                .setParameter("userId", bookMarkDto.getShowId())
+//                .getSingleResult();
+//    }
 }
