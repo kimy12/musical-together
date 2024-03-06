@@ -147,10 +147,7 @@
   <script type="text/javascript" th:src="@{/assets/js/main.js}"></script>
   <script type="text/javascript" th:src="@{/assets/js/boxofs-show.js}"></script>
   <script>
-
     const bookMark = (showId) => {
-        alert(showId);
-
       axios({
         method: "post",
         url: "/bookMark",

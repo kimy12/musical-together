@@ -4,6 +4,8 @@ import com.musicaltogether.mugether.user.domain.BookMark;
 import com.musicaltogether.mugether.user.dto.BookMarkDto;
 import com.musicaltogether.mugether.user.service.BookMarkService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,8 +22,10 @@ public class BookMarkApiController {
      *
      */
     @PostMapping("/bookMark")
-    public void updateBookMark(@RequestBody BookMarkDto bookMarkDto){
-        bookMarkService.saveBookMark(bookMarkDto);
+    public ResponseEntity<BookMark> updateBookMark(@RequestBody BookMarkDto bookMarkDto){
+        BookMark bookMark = bookMarkService.saveBookMark(bookMarkDto);
+
+        return new ResponseEntity<BookMark> (bookMark, HttpStatus.OK);
     }
 
 }

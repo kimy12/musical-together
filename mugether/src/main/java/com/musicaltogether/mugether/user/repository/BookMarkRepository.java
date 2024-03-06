@@ -19,8 +19,8 @@ public class BookMarkRepository {
 
     public Optional<BookMark> findBookMarks (BookMarkDto bookMarkDto){
         List<BookMark> bookMarks = em.createQuery("select b from show_bookmarks b where b.show.mt20id = :showId and b.userId = :userId", BookMark.class)
-                .setParameter("showId", bookMarkDto.getUserId())
-                .setParameter("userId", bookMarkDto.getShowId())
+                .setParameter("showId", bookMarkDto.getShowId())
+                .setParameter("userId", bookMarkDto.getUserId())
                 .getResultList();
 
         return bookMarks.stream().findAny();

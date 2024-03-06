@@ -26,21 +26,22 @@ public class BookMarkService {
      * @param bookMarkDto
      */
     @Transactional
-    public void saveBookMark(BookMarkDto bookMarkDto) {
+    public BookMark saveBookMark(BookMarkDto bookMarkDto) {
         //Optional<BookMark> findBookMark = bookMarkRepository.findBookMarks(bookMarkDto);
         BookMark findBookMark = bookMarkRepository
                 .findBookMarks(bookMarkDto).orElseGet(BookMark::new);
 
-        String userId = bookMarkDto.getShowId(); // userId (임시)
+        String userId = bookMarkDto.getUserId(); // userId (임시)
 
-        Show show = showInfoRepository.findOne(userId);
+        Show show = showInfoRepository.findOne(bookMarkDto.getShowId());
         if(!Objects.isNull(findBookMark.getShow())){
             if (findBookMark.getStatus()) findBookMark.updateUnBookMark(show); // 북마크 off
             else findBookMark.updateBookMark(show); // 북마크 on
         } else {
-            BookMark bookMark = BookMark.createBookMark(show, userId); // 북마크 생성 (on)
-            bookMarkRepository.save(bookMark);
+            findBookMark = BookMark.createBookMark(show, userId); // 북마크 생성 (on)
+            bookMarkRepository.save(findBookMark);
         }
 
+        return findBookMark;
     }
 }
