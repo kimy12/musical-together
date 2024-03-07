@@ -62,7 +62,7 @@ public class BookMark {
         bookMark.setStatus(true);
         bookMark.setUserId(userId);
 
-        if (show.getBMarkCnt() == null) show.setBMarkCnt(1);
+        if (show.getBMarkCnt() == null || show.getBMarkCnt() == 0) show.setBMarkCnt(1);
         return bookMark;
     }
 

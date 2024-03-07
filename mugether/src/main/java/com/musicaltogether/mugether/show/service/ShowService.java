@@ -2,12 +2,10 @@ package com.musicaltogether.mugether.show.service;
 
 import com.musicaltogether.mugether.openApi.dto.DetailDto;
 import com.musicaltogether.mugether.openApi.service.OpenApiManager;
-import com.musicaltogether.mugether.show.controller.ShowForm;
 import com.musicaltogether.mugether.show.domain.Show;
 import com.musicaltogether.mugether.show.repository.ShowInfoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
