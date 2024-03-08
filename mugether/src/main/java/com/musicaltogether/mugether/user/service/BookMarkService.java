@@ -26,7 +26,7 @@ public class BookMarkService {
      * @param bookMarkDto
      */
     @Transactional
-    public BookMark saveBookMark(BookMarkDto bookMarkDto) {
+    public BookMark saveBookMark(BookMarkDto bookMarkDto) throws Exception{
         //Optional<BookMark> findBookMark = bookMarkRepository.findBookMarks(bookMarkDto);
         BookMark findBookMark = bookMarkRepository
                 .findBookMarks(bookMarkDto).orElseGet(BookMark::new);

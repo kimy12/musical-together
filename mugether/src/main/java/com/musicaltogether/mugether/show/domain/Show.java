@@ -87,6 +87,19 @@ public class Show {
     @OneToMany(mappedBy = "show") @Setter
     private List<BookMark> showBookMarks = new ArrayList<>();
 
+    // Add this constructor for JPQL query projection
+    /*public Show(Integer rnum, String mt20id, LocalDateTime regDt, String area, String poster, String prfnm, String prfpd, Boolean status, String userId) {
+        this.rnum = rnum;
+        this.mt20id = mt20id;
+        this.regDt = regDt;
+        this.area = area;
+        this.poster = poster;
+        this.prfnm = prfnm;
+        this.prfpd = prfpd;
+        this.status = status;
+        this.userId = userId;
+    }*/
+
     // 연관관계 메서드
 //    public void addBoardInfos (BoardInfo boardInfo){
 //        boardInfos.add(boardInfo);

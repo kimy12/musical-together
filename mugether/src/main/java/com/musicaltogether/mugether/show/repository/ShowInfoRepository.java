@@ -26,14 +26,14 @@ public class ShowInfoRepository{
                 .getResultList();
     }
 
-    public List<Show> findShowAllById(ShowDto showDto){
+    public List<ShowDto> findShowAllById(String userId){
         return em.createQuery("select a.rnum, a.mt20id, a.regDt, a.area,a.poster, a.prfnm, a.prfpd, " +
                         "b.status, b.userId " +
-                        "from show a " +
-                        "left join fetch a.showBookMarks b" +
-                        "where a.showBookMarks.userId = :userId or a.showBookMarks.userId is null " +
-                        "order by a.rnum", Show.class)
-                .setParameter("userId", showDto.getUserId())
+                        "from Show a " +
+                        "left join a.showBookMarks b " +
+                        "where b.userId = :userId or b.userId is null " +
+                        "order by a.rnum", ShowDto.class)
+                .setParameter("userId", userId)
                 .getResultList();
     }
 }

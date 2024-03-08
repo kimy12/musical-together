@@ -3,6 +3,7 @@ package com.musicaltogether.mugether.show.service;
 import com.musicaltogether.mugether.openApi.dto.DetailDto;
 import com.musicaltogether.mugether.openApi.service.OpenApiManager;
 import com.musicaltogether.mugether.show.domain.Show;
+import com.musicaltogether.mugether.show.dto.ShowDto;
 import com.musicaltogether.mugether.show.repository.ShowInfoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,9 +40,20 @@ public class ShowService {
         return entity;
     }
 
+    /**
+     * 박스오피스 모든 공연들을 가져온다.
+     * @return
+     */
     public List<Show> findAll(){
         return showInfoRepository.findAll();
     }
+
+    /**
+     * 로그인 한 사용자의 북마크 포함 모든 공연들을 가져온다.
+     * @param userId
+     * @return
+     */
+    public List<ShowDto> findShowAllById(String userId) {return showInfoRepository.findShowAllById(userId); }
 
     public Show findOne (String showId){
         return showInfoRepository.findOne(showId);
