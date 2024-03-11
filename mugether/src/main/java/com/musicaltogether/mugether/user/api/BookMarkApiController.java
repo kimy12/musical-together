@@ -1,5 +1,7 @@
 package com.musicaltogether.mugether.user.api;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import com.musicaltogether.mugether.user.domain.BookMark;
 import com.musicaltogether.mugether.user.dto.BookMarkDto;
 import com.musicaltogether.mugether.user.service.BookMarkService;
@@ -26,10 +28,14 @@ public class BookMarkApiController {
      *
      */
     @PostMapping("/bookMark")
-    public ResponseEntity<BookMark> updateBookMark(@RequestBody BookMarkDto bookMarkDto) throws Exception{
+    public ResponseEntity<String> updateBookMark(@RequestBody BookMarkDto bookMarkDto) throws Exception{
         BookMark bookMark = bookMarkService.saveBookMark(bookMarkDto);
 
-        return new ResponseEntity<> (bookMark, HttpStatus.CREATED);
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new Hibernate5Module());
+
+        String str = mapper.writeValueAsString(bookMark.getStatus());
+        return new ResponseEntity<> (str, HttpStatus.CREATED);
 
     }
 
