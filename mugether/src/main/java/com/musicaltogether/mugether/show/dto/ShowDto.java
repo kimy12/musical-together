@@ -1,6 +1,7 @@
 package com.musicaltogether.mugether.show.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -26,9 +27,10 @@ public class ShowDto {
     //(임시)
     private String userId; // 북마크한 user id (로그인한 id)
 
+    @Setter
     private String bookmark; // 북마크 on or off : 북마크 표시한 리스트만 보기
 
-    public ShowDto(Integer rnum, String mt20id, LocalDateTime regDt, String area, String poster, String prfnm, String prfpd, Boolean status, String userId) {
+    public ShowDto(Integer rnum, String mt20id, LocalDateTime regDt, String area, String poster, String prfnm, String prfpd, Boolean status, String userId, String bookmark) {
         this.rnum = rnum;
         this.mt20id = mt20id;
         this.regDt = regDt;
@@ -38,5 +40,6 @@ public class ShowDto {
         this.prfpd = prfpd;
         this.status = status;
         this.userId = "testUserId2";
+        this.bookmark = bookmark;
     }
 }
