@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -23,11 +24,25 @@ public class ShowController {
     private final PlayApiService playApiService;
     private final ShowService showService;
 
+    /**
+     * 박스오피스 메인 화면을 불러온다.
+     * @param model
+     * @return
+     */
     @GetMapping("/showList")
     public String getshowList (Model model) {
-        //model.addAttribute("resultList", showService.findAll());
-        //List<ShowDto> resultList = showService.findShowAllById("testUserId2");
         model.addAttribute("resultList", showService.findShowAllById("testUserId2"));
+        return "boxOfs/main";
+    }
+
+    /**
+     * 사용자가 북마크한 공연들을 가져온다.
+     * @param model
+     * @return
+     */
+    @PostMapping("/myBookMarkList")
+    public String getMyBookMarkList (Model model){
+
         return "boxOfs/main";
     }
 

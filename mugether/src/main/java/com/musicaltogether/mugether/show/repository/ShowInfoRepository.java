@@ -36,4 +36,16 @@ public class ShowInfoRepository{
                 .setParameter("userId", userId)
                 .getResultList();
     }
+
+    public List<ShowDto> findBookmarkShowAllById (String userId) {
+        return em.createQuery("select a.rnum, a.mt20id, a.regDt, a.area,a.poster, a.prfnm, a.prfpd, " +
+                        "b.status, b.userId " +
+                        "from Show a " +
+                        "inner join a.showBookMarks b " +
+                        "on (a.userId=b.userId) " +
+                        "where b.userId = :userId and b.status=true " +
+                        "order by a.rnum", ShowDto.class)
+                .setParameter("userId", userId)
+                .getResultList();
+    }
 }
