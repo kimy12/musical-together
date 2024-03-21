@@ -34,10 +34,12 @@ public class ShowController {
      * @return
      */
     @GetMapping(value = {"/showList", "/showList/{bookmarkOn}"})
-    public String getshowList (@PathVariable(name = "bookmark") String bookmarkOn, Model model) {
-        List<ShowDto> resultList = new ArrayList<>();
-        if("on".equals(bookmarkOn) || !bookmarkOn.isEmpty()) resultList = showService.findBookmarkShowAllById("testUserId2");
-        else resultList = showService.findShowAllById("testUserId2");
+    public String getshowList (@PathVariable(name = "bookmarkOn") String bookmarkOn, Model model) {
+        //List<ShowDto> resultList = new ArrayList<>();
+        /*if("on".equals(bookmarkOn) || !bookmarkOn.isEmpty()) resultList = showService.findBookmarkShowAllById("testUserId2");
+        else resultList = showService.findShowAllById("testUserId2");*/
+
+        List<ShowDto> resultList = showService.findShowAllById("testUserId2");
 
         model.addAttribute("resultList", resultList);
         return "boxOfs/main";

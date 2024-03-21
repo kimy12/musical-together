@@ -30,7 +30,7 @@ public class ShowDto {
     @Setter
     private String bookmark; // 북마크 on or off : 북마크 표시한 리스트만 보기
 
-    public ShowDto(Integer rnum, String mt20id, LocalDateTime regDt, String area, String poster, String prfnm, String prfpd, Boolean status, String userId, String bookmark) {
+    public ShowDto(Integer rnum, String mt20id, LocalDateTime regDt, String area, String poster, String prfnm, String prfpd, Boolean status, String userId) {
         this.rnum = rnum;
         this.mt20id = mt20id;
         this.regDt = regDt;
@@ -40,6 +40,5 @@ public class ShowDto {
         this.prfpd = prfpd;
         this.status = status;
         this.userId = "testUserId2";
-        this.bookmark = bookmark;
     }
 }
