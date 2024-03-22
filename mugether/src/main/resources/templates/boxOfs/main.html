@@ -42,14 +42,14 @@
   <!-- ====== Blog Section Start -->
   <section class="pt-20 pb-10 lg:pb-20 dark:bg-dark">
     <div class="container">
-      <form th:object="${showSearch}" method="post">
+      <form th:action="@{/showList}" id="showSearch" th:object="${showSearch}" method="post">
         <div class="flex flex-wrap justify-center mb-5">
           <input class="ais-SearchBox-input flex h-[56px] items-center rounded-lg border border-gray-3 pl-12 pr-6 outline-none duration-300 focus:border-primary dark:bg-dark-3 dark:focus:border-primary dark:border-dark-stroke" aria-label="Search" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="Type anything to search..." spellcheck="false" maxlength="512" type="search" value="">
         </div>
         <div class="flex flex-wrap justify-end mb-5">
           <label for="toggleTwo" class="flex items-center cursor-pointer select-none text-dark dark:text-white">
             <div class="relative">
-              <input type="checkbox" id="toggleTwo" class="peer sr-only">
+              <input type="checkbox" th:onclick="showSearch()" th:field="*{bookmark}" id="toggleTwo" class="peer sr-only">
               <div class="block h-8 rounded-full dark:bg-dark-2 bg-gray-3 w-14"></div>
               <div class="absolute w-6 h-6 transition bg-white rounded-full dot dark:bg-dark-4 left-1 top-1 peer-checked:translate-x-full peer-checked:bg-primary"></div>
             </div>
@@ -166,6 +166,7 @@
   <script type="text/javascript" th:src="@{/assets/js/main.js}"></script>
   <script type="text/javascript" th:src="@{/assets/js/boxofs-show.js}"></script>
   <script>
+    <!-- 북마크 설정/해제 -->
     const bookMark = (showId, status) => {
       axios({
         method: "post",
@@ -181,6 +182,13 @@
         console.log("err : ", err);
       });
     }
+
+    <!-- 공연 리스트 검색 -->
+    const showSearch = () => {
+      var form = document.getElementById("showSearch");
+      form.submit();
+    }
+
   </script>
 </th:block>
 </html>

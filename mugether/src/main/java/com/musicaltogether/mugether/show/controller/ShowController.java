@@ -9,9 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -28,20 +26,36 @@ public class ShowController {
     private final ShowService showService;
 
     /**
-     * 박스오피스 메인 화면을 불러온다. (미로그인 사용자들 용)
-     * @param bookmarkOn 북마크 on or off
+     * 박스오피스 메인 화면을 불러온다. (로그인 사용자들 용 : 기본 북마크 on 상태)
      * @param model
      * @return
      */
-    @GetMapping(value = {"/showList", "/showList/{bookmarkOn}"})
-    public String getshowList (@PathVariable(name = "bookmarkOn") String bookmarkOn, Model model) {
-        //List<ShowDto> resultList = new ArrayList<>();
-        /*if("on".equals(bookmarkOn) || !bookmarkOn.isEmpty()) resultList = showService.findBookmarkShowAllById("testUserId2");
-        else resultList = showService.findShowAllById("testUserId2");*/
-
-        List<ShowDto> resultList = showService.findShowAllById("testUserId2");
-
+    @GetMapping("/showList")
+    public String getshowList (
+            Model model) {
+        showService.findShowAllById("testUserId2"); // 전체 공연 리스트
+        model.addAttribute("resultList", showService.findShowAllById("testUserId2"));
+        model.addAttribute("showSearch", new ShowDto());
+        return "boxOfs/main";
+    }
+    /**
+     * 박스오피스 메인 화면을 불러온다. (로그인 사용자들 용) - 북마크 on / off
+     * @param searchShowForm 검색조건
+     * @param model
+     * @return
+     */
+    //@GetMapping(value = {"/showList", "/showList/{bookmarkOn}"})
+    @PostMapping("/showList")
+    public String getshowList (
+            @ModelAttribute("showSearch") ShowDto searchShowForm,
+            Model model) {
+        List<ShowDto> resultList = new ArrayList<>();
+        boolean bookmarkOn = searchShowForm.isBookmark();
+        if(bookmarkOn) resultList = showService.findBookmarkShowAllById("testUserId2"); // 북마크한 공연 리스트
+        else resultList = showService.findShowAllById("testUserId2"); // 전체 공연 리스트
         model.addAttribute("resultList", resultList);
+
+        model.addAttribute("showSearch", searchShowForm);
         return "boxOfs/main";
     }
 
@@ -52,7 +66,9 @@ public class ShowController {
      * @return
      */
     @GetMapping("/myBookMarkList/{bookmark}")
-    public String getMyBookMarkList (@PathVariable(name = "bookmark") String bookmark, Model model){
+    public String getMyBookMarkList (
+            @PathVariable(name = "bookmark") String bookmark,
+            Model model){
         model.addAttribute("resultList", showService.findShowAllById("testUserId2"));
         return "boxOfs/main";
     }

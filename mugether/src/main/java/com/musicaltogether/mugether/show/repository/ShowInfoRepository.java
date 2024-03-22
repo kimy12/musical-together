@@ -42,7 +42,6 @@ public class ShowInfoRepository{
                         "b.status, b.userId " +
                         "from Show a " +
                         "inner join a.showBookMarks b " +
-                        "on (a.userId=b.userId) " +
                         "where b.userId = :userId and b.status=true " +
                         "order by a.rnum", ShowDto.class)
                 .setParameter("userId", userId)
