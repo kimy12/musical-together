@@ -40,8 +40,10 @@ public class ShowService {
         return entity;
     }
 
+    public List<ShowDto> findShowAllById(ShowDto searchShowForm) {return showInfoRepository.findShowAllById(searchShowForm); }
+
     /**
-     * 박스오피스 모든 공연들을 가져온다.
+     * 박스오피스 모든 공연들을 가져온다. (미로그인 사용자)
      * @return
      */
     public List<Show> findAll(){
@@ -54,13 +56,6 @@ public class ShowService {
      * @return
      */
     public List<ShowDto> findShowAllById(String userId) {return showInfoRepository.findShowAllById(userId); }
-
-    /**
-     * 로그인 한 사용자의 북마크 공연들을 가져온다.
-     * @param userId 사용자 id
-     * @return
-     */
-    public List<ShowDto> findBookmarkShowAllById(String userId) {return showInfoRepository.findBookmarkShowAllById(userId); }
 
     public Show findOne (String showId){
         return showInfoRepository.findOne(showId);

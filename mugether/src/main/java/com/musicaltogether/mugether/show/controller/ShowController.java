@@ -49,12 +49,8 @@ public class ShowController {
     public String getshowList (
             @ModelAttribute("showSearch") ShowDto searchShowForm,
             Model model) {
-        List<ShowDto> resultList = new ArrayList<>();
-        boolean bookmarkOn = searchShowForm.isBookmark();
-        if(bookmarkOn) resultList = showService.findBookmarkShowAllById("testUserId2"); // 북마크한 공연 리스트
-        else resultList = showService.findShowAllById("testUserId2"); // 전체 공연 리스트
-        model.addAttribute("resultList", resultList);
-
+        searchShowForm.setUserId("testUserId2");
+        model.addAttribute("resultList", showService.findShowAllById(searchShowForm));
         model.addAttribute("showSearch", searchShowForm);
         return "boxOfs/main";
     }
