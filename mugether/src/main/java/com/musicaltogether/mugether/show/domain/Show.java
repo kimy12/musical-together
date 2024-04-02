@@ -75,7 +75,7 @@ public class Show {
     @Column(name = "state")
     private String prfstate; // 공연 상태
 
-    @Column(name = "plc_code")
+    @Column(name = "plc_id")
     private String mt10id; // 공연장소 코드
 
     @Setter

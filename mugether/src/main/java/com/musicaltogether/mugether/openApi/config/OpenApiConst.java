@@ -16,6 +16,8 @@ public class OpenApiConst {
 
     // https://kopis.or.kr/openApi/restful/boxoffice?service=2dd15a4b568046bab37997ac27d5e074&ststype=month&date=20240124&catecode=GGGA
 
+    // 공연장소 예시 url
+    // http://kopis.or.kr/openApi/restful/prfplc?service=2dd15a4b568046bab37997ac27d5e074&cpage=1&rows=5
 
 
 }
