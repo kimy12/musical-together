@@ -75,8 +75,8 @@ public class Show {
     @Column(name = "state")
     private String prfstate; // 공연 상태
 
-    @Column(name = "plc_id")
-    private String mt10id; // 공연장소 코드
+//    @Column(name = "plc_id")
+//    private String mt10id; // 공연장소 코드
 
     @Setter
     private Integer bMarkCnt; // 북마크 수
@@ -86,6 +86,14 @@ public class Show {
 
     @OneToMany(mappedBy = "show") @Setter
     private List<BookMark> showBookMarks = new ArrayList<>();
+
+    /**
+     * 연관관계의 주인으로 잡는다.
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "plc_id") // fk
+    @Setter
+    private Place place;
 
     // Add this constructor for JPQL query projection
     /*public Show(Integer rnum, String mt20id, LocalDateTime regDt, String area, String poster, String prfnm, String prfpd, Boolean status, String userId) {
@@ -136,7 +144,7 @@ public class Show {
                 .poster(dto.getPoster())
                 .cate(dto.getGenrenm())
                 .prfstate(dto.getPrfstate())
-                .mt10id(dto.getMt10id())
+                //.mt10id(dto.getMt10id())
                 .regDt(LocalDateTime.now());
 
     }
