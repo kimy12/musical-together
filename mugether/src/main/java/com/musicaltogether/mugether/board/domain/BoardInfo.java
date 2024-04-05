@@ -27,7 +27,6 @@ public class BoardInfo {
      */
     @ManyToOne(fetch = FetchType.LAZY) // x to one 인 경우 default 가 EAGER 이다. LAZY 비꾸는거 중요함
     @JoinColumn(name = "show_id") // fk
-    @Setter
     private Show show;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

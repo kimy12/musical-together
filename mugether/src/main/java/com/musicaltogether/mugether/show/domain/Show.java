@@ -92,8 +92,12 @@ public class Show {
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "plc_id") // fk
-    @Setter
     private Place place;
+
+    public void setPlace(Place place){
+        this.place = place;
+        place.getShows().add(this);
+    }
 
     // Add this constructor for JPQL query projection
     /*public Show(Integer rnum, String mt20id, LocalDateTime regDt, String area, String poster, String prfnm, String prfpd, Boolean status, String userId) {

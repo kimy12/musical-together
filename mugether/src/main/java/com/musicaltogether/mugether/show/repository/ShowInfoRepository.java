@@ -28,9 +28,19 @@ public class ShowInfoRepository{
     }
 
     /**
+     * 공연 장소 및 공연 상세
+     * @param showId 공연 id
+     * @return 공연 상세
+     */
+    public ShowDto showDetailByShowId (String showId){
+
+        return null;
+    }
+
+    /**
      * 공연 리스트
-     * @param searchShowForm
-     * @return
+     * @param searchShowForm 검색 조건
+     * @return 공연 리스트
      */
     public List<ShowDto> findShowAllById(ShowDto searchShowForm) {
         String jpql = "select a.rnum, a.mt20id, a.regDt, a.area,a.poster, a.prfnm, a.prfpd, b.status, b.userId from Show a ";
@@ -66,7 +76,7 @@ public class ShowInfoRepository{
         return query.getResultList();
     }
 
-    public List<ShowDto> findShowAllById(String userId){
+    /*public List<ShowDto> findShowAllById(String userId){
         return em.createQuery("select a.rnum, a.mt20id, a.regDt, a.area,a.poster, a.prfnm, a.prfpd, " +
                         "b.status, b.userId " +
                         "from Show a " +
@@ -75,5 +85,5 @@ public class ShowInfoRepository{
                         "order by a.rnum", ShowDto.class)
                 .setParameter("userId", userId)
                 .getResultList();
-    }
+    }*/
 }

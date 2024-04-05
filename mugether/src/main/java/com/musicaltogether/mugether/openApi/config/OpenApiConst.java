@@ -18,6 +18,9 @@ public class OpenApiConst {
 
     // 공연장소 예시 url
     // http://kopis.or.kr/openApi/restful/prfplc?service=2dd15a4b568046bab37997ac27d5e074&cpage=1&rows=5
+    
+    // 공연장소 상세 예시 url
+    // https://kopis.or.kr/openApi/restful/prfplc/FC000031?service=2dd15a4b568046bab37997ac27d5e074&newsql=Y
 
 
 }
