@@ -18,6 +18,11 @@ public class ShowInfoRepository{
         em.persist(show);
     }
 
+    /**
+     * 공연 정보를 공연 아이디를 통해 가져 온다.
+     * @param showId 공연 ID
+     * @return 공연 정보
+     */
     public Show findOne(String showId){
         return em.find(Show.class, showId);
     }
@@ -76,7 +81,7 @@ public class ShowInfoRepository{
         return query.getResultList();
     }
 
-    /*public List<ShowDto> findShowAllById(String userId){
+    public List<ShowDto> findShowAllById(String userId){
         return em.createQuery("select a.rnum, a.mt20id, a.regDt, a.area,a.poster, a.prfnm, a.prfpd, " +
                         "b.status, b.userId " +
                         "from Show a " +
@@ -85,5 +90,5 @@ public class ShowInfoRepository{
                         "order by a.rnum", ShowDto.class)
                 .setParameter("userId", userId)
                 .getResultList();
-    }*/
+    }
 }

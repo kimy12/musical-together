@@ -2,6 +2,7 @@ package com.musicaltogether.mugether.show.service;
 
 import com.musicaltogether.mugether.openApi.dto.DetailDto;
 import com.musicaltogether.mugether.openApi.service.OpenApiManager;
+import com.musicaltogether.mugether.show.domain.Place;
 import com.musicaltogether.mugether.show.domain.Show;
 import com.musicaltogether.mugether.show.dto.ShowDto;
 import com.musicaltogether.mugether.show.repository.ShowInfoRepository;
@@ -35,7 +36,9 @@ public class ShowService {
         Show show = showInfoRepository.findOne(id);
         if(show!=null) {
             if (show.getPlace().getMt10id() == null){
+                Place place = new Place();
                 // 공연장소 id 저장 로직
+                show = Show.builderForPlace(place).build();
             }
             return show; // showId가 존재하고 있었으면 리턴
         }
@@ -57,7 +60,7 @@ public class ShowService {
 
     /**
      * 로그인 한 사용자의 북마크 포함 모든 공연들을 가져온다.
-     * @param userId 사용자 id
+     * @param
      * @return
      */
     public List<ShowDto> findShowAllById(String userId) {return showInfoRepository.findShowAllById(userId); }

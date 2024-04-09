@@ -94,6 +94,7 @@ public class Show {
     @JoinColumn(name = "plc_id") // fk
     private Place place;
 
+    // 연관관계 메서드
     public void setPlace(Place place){
         this.place = place;
         place.getShows().add(this);
@@ -112,7 +113,7 @@ public class Show {
         this.userId = userId;
     }*/
 
-    // 연관관계 메서드
+
 //    public void addBoardInfos (BoardInfo boardInfo){
 //        boardInfos.add(boardInfo);
 //        boardInfo.setShow(this);
@@ -149,7 +150,13 @@ public class Show {
                 .cate(dto.getGenrenm())
                 .prfstate(dto.getPrfstate())
                 //.mt10id(dto.getMt10id())
+                //.place(place)
                 .regDt(LocalDateTime.now());
 
+    }
+
+    // Place 정보 저장을 위한 빌더
+    public static ShowBuilder builderForPlace (Place place){
+        return ShowBuilder().place(place);
     }
 }
