@@ -5,7 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +72,10 @@ public class Place {
 
     @Column(name = "parkinglot_yn")
     private String parkinglot; // 주차시설
+
+    @Column(name = "reg_dt")
+    @CreatedDate
+    private LocalDateTime regDt; // 생성 날짜 (db)
 
     @OneToMany(mappedBy = "place") @Setter
     private List<Show> shows = new ArrayList<>();

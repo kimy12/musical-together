@@ -36,9 +36,9 @@ public class ShowService {
         Show show = showInfoRepository.findOne(id);
         if(show!=null) {
             if (show.getPlace().getMt10id() == null){
-                Place place = new Place();
+                // Place place = new Place();
                 // 공연장소 id 저장 로직
-                show = Show.builderForPlace(place).build();
+                //show = Show.builderForPlace(place).build();
             }
             return show; // showId가 존재하고 있었으면 리턴
         }
